@@ -13,9 +13,10 @@ import CustomTextArea from '../../shared/component/Textinput/CustomTextArea';
 import ButtonPurple from '../../shared/component/Button/ButtonPurple';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import HeaderTop from '../../shared/component/Header/Header';
-import { calculateTotalPrice, calculateTotalPriceToString, formatRupiah, normalizeData } from '../../shared/helper/helper';
+import { calculateTotalPrice, calculateTotalPriceToString, formatRupiah, normalizeData, Print_r } from '../../shared/helper/helper';
 import ModalJenisPembayaran from '../../shared/component/Modal/ModalJenisPembayaran/ModalJenisPembayaran';
 import { addItemToSelectedLayanan, removeItemFromSelectedLayanan } from './Booking_Config';
+import { addDataRiwayat } from '../../shared/services/Asycnstorage';
 
 export default function Booking_Screen({ route }) {
     const getData = route.params.data;
@@ -49,6 +50,9 @@ export default function Booking_Screen({ route }) {
         navigation.navigate('BookingCheckout_Screen', {
             data: data
         })
+        addDataRiwayat(data)
+
+        Print_r(data);
     }
 
     useFocusEffect(
@@ -89,7 +93,7 @@ export default function Booking_Screen({ route }) {
                                                         <View style={styles.keterangan_Bot}>
                                                             <Text style={FontStyle.Manrope_Bold_16_Cyan}>{formatRupiah(item.harga)} </Text>
                                                             <View style={styles.dot} />
-                                                            <Text style={FontStyle.NunitoSans_Regular_12_grey}>{item.kategori}</Text>
+                                                            <Text style={FontStyle.NunitoSans_Regular_12_grey}>{item.kategori_name}</Text>
                                                         </View>
                                                     </View>
                                                 </View>

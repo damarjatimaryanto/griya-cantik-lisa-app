@@ -12,7 +12,7 @@ const CheckoutContainerHorizontal = ({ label, title, paddingLeft, }) => {
 
     return (
         <View style={styles.row2}>
-            <Text style={FontStyle.Manrope_Bold_14}>{title}t</Text>
+            <Text style={FontStyle.Manrope_Bold_14}>{title}</Text>
             <Text style={FontStyle.Manrope_Bold_14_Cyan}>{label}</Text>
         </View>
     );

@@ -95,7 +95,7 @@ export default function BookingCheckout_Screen({ route }) {
 
                 <View style={styles.FloatingBottomContainer}>
 
-                    <ButtonPurple ButtonWidth={94} title={'Tutup'} ButtonHeight={55} />
+                    <ButtonPurple ButtonWidth={94} title={'Tutup'} ButtonHeight={55} onPress={() => navigation.navigate('Riwayat_Screen')} />
 
                 </View>
             </View>

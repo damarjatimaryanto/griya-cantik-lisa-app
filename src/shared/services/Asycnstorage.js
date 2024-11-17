@@ -2,6 +2,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Print_r } from "../helper/helper";
 import { ToastAndroid } from "react-native";
 
+const DATA_KEY = 'productList';
+const DATA_KEY_riwayat = 'riwayat_checkout';
+
 export const GET_UserSession = async (setData) => {
     try {
         const userSession = await AsyncStorage.getItem('user_session');
@@ -16,7 +19,7 @@ export const GET_UserSession = async (setData) => {
 };
 
 
-const DATA_KEY = 'productList';
+
 
 // **CREATE**: Tambah Data Baru
 export const addDataLiked = async (newData) => {
@@ -65,6 +68,32 @@ export const deleteDataLiked = async (id) => {
         ToastAndroid.show('Berhasil dihapus dari Disukai!', ToastAndroid.SHORT);
     } catch (error) {
         console.error('Gagal menghapus data:', error);
+    }
+};
+
+
+
+// **CREATE**: Tambah Data Baru
+export const addDataRiwayat = async (newData) => {
+    try {
+        const existingData = await getDataLiked(); // Ambil data yang ada
+        const updatedData = [...(existingData || []), newData]; // Tambahkan data baru
+        await AsyncStorage.setItem(DATA_KEY_riwayat, JSON.stringify(updatedData));
+        console.log('Data berhasil ditambahkan!');
+        ToastAndroid.show('Berhasil ditambahkan!', ToastAndroid.SHORT);
+    } catch (error) {
+        console.error('Gagal menambahkan data:', error);
+    }
+};
+
+// **READ**: Ambil Data
+export const getDataRiwayat = async () => {
+    try {
+        const jsonValue = await AsyncStorage.getItem(DATA_KEY_riwayat);
+        return jsonValue != null ? JSON.parse(jsonValue) : [];
+    } catch (error) {
+        console.error('Gagal membaca data:', error);
+        return [];
     }
 };
 
