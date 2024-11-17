@@ -10,6 +10,7 @@ import ButtonPurple from "../../shared/component/Button/ButtonPurple.js";
 import CustomTextInput from "../../shared/component/Textinput/CustomTextInput.js";
 import FontStyle from "../../shared/style/FontStyle.js";
 import { responsiveScreenHeight } from "react-native-responsive-dimensions";
+import { handleLogin } from "./Login_Config.js";
 
 
 const Login_Screen = () => {
@@ -46,7 +47,7 @@ const Login_Screen = () => {
                             setInput={setPassword}
                         />
 
-                        <ButtonPurple ButtonHeight={60} title={'Masuk'} ButtonMarginTop={responsiveScreenHeight(20)} onPress={() => navigation.navigate('Home_Screen')} />
+                        <ButtonPurple ButtonHeight={60} title={'Masuk'} ButtonMarginTop={responsiveScreenHeight(20)} onPress={() => handleLogin(username, password, navigation)} />
                     </View>
                 </View>
             </View>

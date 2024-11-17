@@ -4,6 +4,7 @@ import COLORS from '../../shared/enum/colors_library';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 import FontStyle from '../../shared/style/FontStyle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Splash() {
     const navigation = useNavigation();
@@ -13,7 +14,17 @@ export default function Splash() {
 
     const navig = async () => {
         setTimeout(async () => {
-            navigation.navigate("Boarding_Screen");
+            // navigation.navigate("Boarding_Screen");
+            const loggedIn = await AsyncStorage.getItem("login_session");
+            if (loggedIn != 1) {
+                navigation.navigate("Login_Screen");
+                console.log('LoginScreem');
+
+                // jika belum klik Login Tapi sudah setting baterai -> Login
+            } else {
+                navigation.navigate("Home_Screen");
+                console.log('HomeScreen');
+            }
         }, 2000);
     };
 

@@ -11,10 +11,10 @@ import { responsiveScreenHeight, responsiveScreenWidth } from 'react-native-resp
 const bulanIndo = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
 const hariIndo = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
 
-const CustomCalendar = () => {
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth()); // Bulan saat ini
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear()); // Tahun saat ini
-    const [focusedDate, setFocusedDate] = useState(null); // Tanggal yang difokuskan
+const CustomCalendar = ({ setTanggal }) => {
+    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const [focusedDate, setFocusedDate] = useState(null);
 
     const today = new Date();
 
@@ -65,10 +65,11 @@ const CustomCalendar = () => {
 
     const handleDatePress = (item) => {
         if (!item.isDisabled) {
-            setFocusedDate(item.date);
-            // alert(`Tanggal dipilih: ${item.date}`);
+            setFocusedDate(focusedDate === item.date ? null : item.date);
+            setTanggal(focusedDate === item.date ? null : item.date)
         }
     };
+
 
     return (
         <View style={styles.container}>

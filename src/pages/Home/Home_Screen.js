@@ -8,12 +8,22 @@ import Layanan_Horizontal from '../../shared/component/Layanan/Layanan_Horizonta
 import COLORS from '../../shared/enum/colors_library';
 import { DATA_HairCare } from '../../shared/services/DATA_HairCare';
 import { DATA_Kategori } from '../../shared/services/DATA_Kategori';
-import { useNavigation } from '@react-navigation/native';
-import { formatRupiah } from '../../shared/helper/helper';
-
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { formatRupiah, Print_r } from '../../shared/helper/helper';
+import React, { useState } from 'react';
+import { GET_UserSession } from '../../shared/services/Asycnstorage';
 
 export default function Home_Screen() {
     const navigation = useNavigation();
+    const [userData, setUserData] = useState([]);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            GET_UserSession(setUserData);
+
+        }, [])
+    );
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
 
@@ -22,11 +32,15 @@ export default function Home_Screen() {
                     <StatusBar translucent={false} barStyle={"dark-content"} backgroundColor={'white'} />
                     <View style={styles.TopContainer}>
                         <View style={styles.TopContainer_Left}>
-                            <Text style={FontStyle.Manrope_Bold_24}>Halo, Stefany</Text>
+                            <Text style={FontStyle.Manrope_Bold_24} numberOfLines={1}>Halo, {userData[0]?.nama_user || 'stefany'}</Text>
                             <Text style={{ ...FontStyle.NunitoSans_Regular_14, marginTop: 5 }}>Find the service you want, and treat yourself</Text>
                         </View>
                         <View style={styles.TopContainer_Right}>
-                            <Image source={ICONS.icon_heart} style={styles.icon_Heart_style} />
+
+                            <TouchableOpacity onPress={() => navigation.navigate('Liked_Screen')}>
+                                <Image source={ICONS.icon_heart} style={styles.icon_Heart_style} />
+                            </TouchableOpacity>
+
                         </View>
                     </View>
 
@@ -38,12 +52,16 @@ export default function Home_Screen() {
                         </ScrollView>
                     </View>
 
+
+
                     <View style={styles.LayananContainer}>
                         <Text style={FontStyle.Manrope_Bold_16}>Layanan</Text>
                         <View style={styles.LayananList}>
 
                             {DATA_Kategori.map((item, index) => (
-                                <Layanan key={index} iconLayanan={item.icon} labelLayanan={item.nama_kategori} />
+                                <Layanan key={index} iconLayanan={item.icon} labelLayanan={item.nama_kategori}
+
+                                    onPress={() => navigation.navigate('Explore_Screen', { data: item })} />
                             ))}
                         </View>
                     </View>
@@ -65,7 +83,7 @@ export default function Home_Screen() {
                     <View style={styles.KategoriContainer}>
                         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                             {DATA_HairCare.map((item, index) => (
-                                <TouchableOpacity key={index} style={styles.kategoriBox} onPress={() => navigation.navigate('Boarding_Screen')}>
+                                <TouchableOpacity key={index} style={styles.kategoriBox}>
                                     <View style={styles.kategoriBox_Left}>
                                         <Image source={item.image} style={styles.kategoriImage} />
 

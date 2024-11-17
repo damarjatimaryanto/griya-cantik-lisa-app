@@ -1,6 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
-import { PixelRatio, Text, View } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+import { Alert, PixelRatio, Text, View } from 'react-native';
+import * as Clipboard from 'expo-clipboard';
 const fontScale = PixelRatio.getFontScale();
 
 
@@ -14,9 +15,32 @@ export function formatRupiah(number) {
     }
     return 'Rp ' + parseInt(number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+export const calculateTotalPrice = (DATA) => {
+    return DATA.reduce((total, item) => total + item.harga, 0);
+}
+
+export const calculateTotalPriceToString = (DATA) => {
+    // {calculateTotalPrice().toLocaleString()}
+    return DATA.reduce((total, item) => total + item.harga, 0).toLocaleString();
+}
+
+export const normalizeData = (data) => {
+    if (!Array.isArray(data)) {
+        return [data];
+    }
+    return data;
+};
+
+
 export const Print_r = (data) => {
     console.log(JSON.stringify(data, null, 2));
 }
+
+export const copyToClipboard = async (text) => {
+    await Clipboard.setStringAsync(text);
+
+};
 
 export const NavigateTo = (address) => {
     const navigation = useNavigation();

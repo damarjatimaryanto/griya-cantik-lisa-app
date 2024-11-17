@@ -4,39 +4,83 @@ import styles from './Explore_Style';
 import ICONS from '../../shared/enum/icon_library';
 import FontStyle from '../../shared/style/FontStyle';
 import COLORS from '../../shared/enum/colors_library';
-import { DATA_HairCare } from '../../shared/services/DATA_HairCare';
 import { DATA_Kategori } from '../../shared/services/DATA_Kategori';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ModalDetailLayanan from '../../shared/component/Modal/ModalDetail/ModalDetail';
-import { useNavigation } from '@react-navigation/native';
-import { formatRupiah } from '../../shared/helper/helper';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { formatRupiah, Print_r } from '../../shared/helper/helper';
+import { addDataLiked, deleteDataLiked, getDataLiked } from '../../shared/services/Asycnstorage';
+import { DATA_Product } from '../../shared/services/DATA_Product';
 
-export default function Explore_Screen() {
+export default function Explore_Screen({ route }) {
+    const getData = route?.params?.data || null;
+
     const navigation = useNavigation();
     const [ModalDetail, setModalDetail] = useState(false);
+    const [selectedKategori, setSelectedKategori] = useState(null);
+    const [selectedKategoriName, setSelectedKategoriName] = useState(null);
     const [SelectedItem, setSelectedItem] = useState([]);
+    const [likedProducts, setLikedProducts] = useState([]);
 
     const toggleModal = () => { setModalDetail(!ModalDetail); };
-    const selectItem = (item) => {
-        console.log(item);
-        setSelectedItem(item);
-        toggleModal();
-    }
+    const selectItem = (item) => { setSelectedItem(item); toggleModal(); }
+    const fetchLikedData = async () => {
+        const likedData = await getDataLiked();
+        setLikedProducts(likedData);
+    };
+
+    const isProductLiked = (productId) => {
+        return likedProducts.some(item => item.id === productId);
+    };
+
+    // Fungsi untuk menambahkan produk ke dalam liked
+    const handleLikeToggle = (product) => {
+        // Cek apakah produk sudah di-like
+        if (isProductLiked(product.id)) {
+            // Jika sudah, hapus dari liked
+            deleteDataLiked(product.id);
+            setLikedProducts(prev => prev.filter(item => item.id !== product.id));
+        } else {
+            // Jika belum, tambahkan ke liked
+            addDataLiked(product);
+            setLikedProducts(prev => [...prev, product]);
+        }
+    };
+    const filteredProducts = selectedKategori
+        ? DATA_Product.filter(product => product.kategori_id === selectedKategori)
+        : DATA_Product;
+
+
+    useFocusEffect(
+        React.useCallback(() => {
+            // Menggunakan getData jika ada, atau default nilai kategori
+            if (getData) {
+                setSelectedKategori(getData.id_kategori);
+                setSelectedKategoriName(getData.nama_kategori);
+            } else {
+                setSelectedKategori(1);
+                setSelectedKategoriName('Hair Care');
+            }
+            fetchLikedData();
+        }, [getData])
+    );
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
                 <StatusBar translucent={false} barStyle={"dark-content"} backgroundColor={'white'} />
 
                 <View style={styles.KategoriListContainer}>
-                    <Text style={FontStyle.Manrope_Bold_16}>Semua Kategori</Text>
+                    <Text style={FontStyle.Manrope_Bold_16}>{selectedKategoriName}</Text>
                     <View style={styles.KategoriList_Horizontal}>
                         <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                             {DATA_Kategori.map((item, index) => (
                                 <TouchableOpacity key={index} style={{
                                     ...styles.KategoriStyle,
-                                    borderColor: item.isFocused == true ? COLORS.purple : COLORS.grey,
-                                    backgroundColor: item.isFocused == true ? COLORS.blue_bg : COLORS.white
-                                }}>
+                                    borderColor: selectedKategori === item.id_kategori ? COLORS.purple : COLORS.grey,
+                                    backgroundColor: selectedKategori === item.id_kategori ? COLORS.blue_bg : COLORS.white
+                                }}
+                                    onPress={() => { setSelectedKategori(selectedKategori === item.id_kategori ? null : item.id_kategori); }}
+                                >
                                     <Text style={item.isFocused ? FontStyle.Manrope_Medium_12_Cyan : FontStyle.Manrope_Medium_12}>{item.nama_kategori}</Text>
                                 </TouchableOpacity>
                             ))}
@@ -47,13 +91,13 @@ export default function Explore_Screen() {
 
                 <View style={styles.KategoriContainer}>
                     <ScrollView showsVerticalScrollIndicator={false}>
-                        {DATA_HairCare.map((item, index) => (
+                        {filteredProducts.map((item, index) => (
                             <TouchableOpacity key={index} style={styles.kategoriBox} onPress={() => selectItem(item)}>
                                 <View style={styles.kategoriBox_Left}>
                                     <Image source={item.image} style={styles.kategoriImage} />
 
-                                    <TouchableOpacity style={styles.likeContainer}>
-                                        <Image source={ICONS.icon_heart} style={{ ...styles.icon_Heart_style, tintColor: COLORS.pink_solid, opacity: item.isLoved ? 1 : 0.4 }} />
+                                    <TouchableOpacity style={styles.likeContainer} onPress={() => handleLikeToggle(item)}>
+                                        <Image source={ICONS.icon_heart} style={{ ...styles.icon_Heart_style, tintColor: COLORS.pink_solid, opacity: isProductLiked(item.id) ? 1 : 0.4 }} />
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.ketegoriBox_Right}>

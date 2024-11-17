@@ -4,14 +4,11 @@ export const DATA_waktu = [
     {
         id_waktu: 1,
         waktu: "10:00",
-
-
     },
     {
         id_waktu: 2,
         waktu: "11:00",
-
-        isFocused: true
+        isDisable: true
 
     },
     {

@@ -4,7 +4,6 @@ import styles from './Booking_Style';
 import ICONS from '../../shared/enum/icon_library';
 import FontStyle from '../../shared/style/FontStyle';
 import COLORS from '../../shared/enum/colors_library';
-import { DATA_HairCare } from '../../shared/services/DATA_HairCare';
 import React, { useEffect, useState, useCallback, createRef } from 'react';
 import { DATA_Spesialis } from '../../shared/services/DATA_Spesialis';
 import { responsiveScreenWidth } from 'react-native-responsive-dimensions';
@@ -14,65 +13,55 @@ import CustomTextArea from '../../shared/component/Textinput/CustomTextArea';
 import ButtonPurple from '../../shared/component/Button/ButtonPurple';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import HeaderTop from '../../shared/component/Header/Header';
+import { calculateTotalPrice, calculateTotalPriceToString, formatRupiah, normalizeData } from '../../shared/helper/helper';
+import ModalJenisPembayaran from '../../shared/component/Modal/ModalJenisPembayaran/ModalJenisPembayaran';
+import { addItemToSelectedLayanan, removeItemFromSelectedLayanan } from './Booking_Config';
 
 export default function Booking_Screen({ route }) {
     const getData = route.params.data;
     const navigation = useNavigation();
     const [ModalDetail, setModalDetail] = useState(false);
+    const [TanggalBooking, setTanggalBooking] = useState('');
+    const [ModalPembayaran, setModalPembayaran] = useState(false);
     const [SelectedItem, setSelectedItem] = useState([]);
-
+    const [selectedSpesialisID, setSelectedSpesialisID] = useState(null);
+    const [selectedSpesialisName, setSelectedSpesialisName] = useState(null);
+    const [selectedTime, setSelectedTime] = useState(null);
     const [SelectedLayanan, setSelectedLayanan] = useState([]);
     const [catatan, setCatatan] = useState('');
-    const [Spesialis, setSpesialis] = useState('');
-
+    const [Pembayaran, setPembayaran] = useState([]);
     const catatanRef = createRef();
 
-    const addItemToSelectedLayanan = (item) => {
-        setSelectedLayanan(prevLayanan => {
-            if (prevLayanan.some(existingItem => existingItem.id === item.id)) {
-                return prevLayanan;
-            }
-            return [...prevLayanan, item];
-        });
-    };
-
-
-    const removeItemFromSelectedLayanan = (id) => {
-        setSelectedLayanan(prevLayanan => prevLayanan.filter(item => item.id !== id));
-    };
     const toggleModal = () => { setModalDetail(!ModalDetail); };
-    const selectItem = (item) => {
-        console.log(item);
-        setSelectedItem(item);
-        toggleModal();
-    }
-    const normalizeData = (data) => {
-        if (!Array.isArray(data)) {
-            return [data];
+    const toggleModalPembayaran = () => { setModalPembayaran(!ModalPembayaran); };
+    const selectItem = (item) => { setSelectedItem(item); toggleModal(); }
+    const sendToCheckout = () => {
+        data = {
+            layanan: SelectedLayanan,
+            spesialis: selectedSpesialisName,
+            tanggal: TanggalBooking,
+            waktu: selectedTime,
+            jenisPembayaran: Pembayaran,
+            catatan: catatan,
+            totalHarga: calculateTotalPrice(SelectedLayanan)
         }
-        return data;
-    };
+
+        navigation.navigate('BookingCheckout_Screen', {
+            data: data
+        })
+    }
+
     useFocusEffect(
         React.useCallback(() => {
-
-            // if (getData) {
-            //     addItemToSelectedLayanan(getData); 
-            // }
             const normalizedData = normalizeData(getData);
-            normalizedData.forEach(item => addItemToSelectedLayanan(item));
-            console.log(getData)
-
+            normalizedData.forEach(item => addItemToSelectedLayanan(item, setSelectedLayanan));
         }, [getData])
     );
 
-
     return (
         <SafeAreaView style={{ flex: 1 }}>
-
             <View style={styles.container}>
                 <StatusBar translucent={false} barStyle={"dark-content"} backgroundColor={'white'} />
-
-
                 <HeaderTop title={'Booking Layanan'} />
                 <ScrollView>
                     <View style={styles.contentContainer}>
@@ -98,14 +87,14 @@ export default function Booking_Screen({ route }) {
                                                     <View style={styles.keterangan_Top}>
                                                         <Text style={FontStyle.Manrope_Bold_16}>{item.nama}</Text>
                                                         <View style={styles.keterangan_Bot}>
-                                                            <Text style={FontStyle.Manrope_Bold_16_Cyan}>{item.harga} </Text>
+                                                            <Text style={FontStyle.Manrope_Bold_16_Cyan}>{formatRupiah(item.harga)} </Text>
                                                             <View style={styles.dot} />
                                                             <Text style={FontStyle.NunitoSans_Regular_12_grey}>{item.kategori}</Text>
                                                         </View>
                                                     </View>
                                                 </View>
                                                 <View style={styles.ketegoriBox_Right}>
-                                                    <TouchableOpacity style={styles.plusminus_style} onPress={() => removeItemFromSelectedLayanan(item.id)}>
+                                                    <TouchableOpacity style={styles.plusminus_style} onPress={() => removeItemFromSelectedLayanan(item.id, setSelectedLayanan)}>
                                                         <Image source={ICONS.icon_minus} style={styles.iconplus_minus} />
                                                     </TouchableOpacity>
                                                 </View>
@@ -123,16 +112,22 @@ export default function Booking_Screen({ route }) {
 
                         <View style={styles.SpesialisList_Horizontal}>
                             <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-                                {DATA_Spesialis.map((item, index) => (
-                                    <View key={index} style={{ ...styles.SpesialisStyle, }}>
-                                        <TouchableOpacity style={{
-                                            ...styles.spesialisPhotos_Container,
-                                            borderColor: item.isFocused == true ? COLORS.purple : COLORS.grey,
-                                            borderWidth: item.isFocused == true ? responsiveScreenWidth(1) : 0,
 
-                                        }}>
+                                {DATA_Spesialis.map((item, index) => (
+                                    <View key={index} style={styles.SpesialisStyle}>
+                                        <TouchableOpacity
+                                            style={{
+                                                ...styles.spesialisPhotos_Container,
+                                                borderColor: selectedSpesialisID === item.id_spesialis ? COLORS.purple : COLORS.grey,
+                                                borderWidth: selectedSpesialisID === item.id_spesialis ? responsiveScreenWidth(1) : 0,
+                                            }}
+                                            onPress={() => {
+                                                setSelectedSpesialisID(selectedSpesialisID === item.id_spesialis ? null : item.id_spesialis);
+                                                setSelectedSpesialisName(setSelectedSpesialisName === item.nama_spesialis ? null : item.nama_spesialis);
+                                            }}
+                                        >
                                             <Image source={item.icon} style={styles.spesialisPhotos_Style} />
-                                            {item.isFocused && (
+                                            {selectedSpesialisID === item.id_spesialis && (
                                                 <View style={styles.spesialisFocus}>
                                                     <Image style={styles.iconCheck} source={ICONS.icon_check} />
                                                 </View>
@@ -148,8 +143,7 @@ export default function Booking_Screen({ route }) {
                             <Text style={FontStyle.Manrope_Bold_14}>Tanggal</Text>
                         </View>
 
-                        <CustomCalendar />
-
+                        <CustomCalendar setTanggal={setTanggalBooking} />
 
                         <View style={styles.jenisLayananTambah_Container}>
                             <Text style={FontStyle.Manrope_Bold_14}>Waktu</Text>
@@ -160,25 +154,40 @@ export default function Booking_Screen({ route }) {
                                 {DATA_waktu.map((item, index) => (
                                     <TouchableOpacity key={index} style={{
                                         ...styles.KategoriStyle,
-                                        borderColor: item.isFocused == true ? COLORS.purple : COLORS.grey,
-                                        backgroundColor: item.isFocused == true ? COLORS.blue_bg : COLORS.white
-                                    }}>
-                                        <Text style={item.isFocused ? FontStyle.Manrope_Medium_12_Cyan : FontStyle.Manrope_Medium_12}>{item.waktu}</Text>
+                                        borderColor: item.waktu == selectedTime ? COLORS.purple : COLORS.grey,
+                                        backgroundColor: item.waktu == selectedTime ? COLORS.blue_bg : COLORS.white,
+                                        opacity: item.isDisable ? 0.3 : 1,
+                                    }}
+                                        onPress={() => {
+                                            setSelectedTime(selectedTime === item.waktu ? null : item.waktu);
+                                            // setSelectedSpesialisName(setSelectedSpesialisName === item.nama_spesialis ? null : item.nama_spesialis);
+                                        }}
+                                        disabled={item.isDisable}
+                                    >
+                                        <Text style={item.waktu == selectedTime ? FontStyle.Manrope_Medium_12_Cyan : FontStyle.Manrope_Medium_12}>{item.waktu}</Text>
                                     </TouchableOpacity>
                                 ))}
                             </ScrollView>
                         </View>
 
+                        <View style={styles.jenisLayananTambah_Container}>
+                            <Text style={FontStyle.Manrope_Bold_14}>Jenis Pembayaran</Text>
+                            <TouchableOpacity style={styles.TambahStyle} onPress={() => toggleModalPembayaran()}>
+                                <Text style={FontStyle.Manrope_Medium_14_Cyan}>{Pembayaran.length === 0 ? 'Pilih' : 'Ubah'}</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        {Pembayaran.length !== 0 && (
+                            <View style={styles.PembayaranImageContainer}>
+                                <Image source={Pembayaran.icon} style={styles.PembayaranImage} />
+                            </View>
+                        )}
 
                         <View style={styles.jenisLayananTambah_Container}>
                             <Text style={FontStyle.Manrope_Bold_14}>Catatan</Text>
                         </View>
 
-
-
-                        <CustomTextArea
-                            input={catatan} setInput={setCatatan} nameRef={catatanRef} placeHolder={'Tuliskan catatan (Opsional)'}
-                        />
+                        <CustomTextArea input={catatan} setInput={setCatatan} nameRef={catatanRef} placeHolder={'Tuliskan catatan (Opsional)'} />
 
                     </View>
 
@@ -186,20 +195,16 @@ export default function Booking_Screen({ route }) {
 
                 <View style={styles.FloatingBottomContainer}>
                     <View style={styles.FloatingBottomLeft}>
-                        <Text style={FontStyle.Manrope_Bold_14}>Total <Text style={FontStyle.NunitoSans_Regular_14}>(4 Layanan)</Text></Text>
-                        <Text style={{ ...FontStyle.Manrope_Bold_20, color: COLORS.purple }}>Rp. 450.000</Text>
-
+                        <Text style={FontStyle.Manrope_Bold_14}>Total <Text style={FontStyle.NunitoSans_Regular_14}>({SelectedLayanan.length} Layanan)</Text></Text>
+                        <Text style={{ ...FontStyle.Manrope_Bold_20, color: COLORS.purple }}>Rp. {calculateTotalPriceToString(SelectedLayanan)}</Text>
                     </View>
                     <View style={styles.FloatingBottomRight}>
-                        <ButtonPurple ButtonWidth={53} title={'Booking'} ButtonHeight={55} onPress={() => navigation.navigate('BookingCheckout_Screen')} />
+                        <ButtonPurple ButtonWidth={53} title={'Booking'} ButtonHeight={55} onPress={() => sendToCheckout()} />
                     </View>
                 </View>
             </View>
 
-
-
-
-
+            <ModalJenisPembayaran visible={ModalPembayaran} onClose={() => setModalPembayaran(false)} setSelected={setPembayaran} />
         </SafeAreaView>
     );
 }

@@ -250,6 +250,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: responsiveScreenWidth(2)
     },
+    PembayaranImageContainer: {
+        width: responsiveScreenWidth(100),
+        // paddingLeft: responsiveScreenWidth(3),
+        marginBottom: responsiveScreenHeight(2),
+        paddingHorizontal: responsiveScreenWidth(3)
+
+
+    },
+    PembayaranImage: {
+        width: responsiveScreenWidth(20),
+        height: responsiveScreenWidth(10),
+        borderTopLeftRadius: responsiveScreenWidth(2),
+        borderBottomLeftRadius: responsiveScreenWidth(2),
+        resizeMode: 'contain'
+    },
     FloatingBottomContainer: {
         backgroundColor: 'white',
         width: responsiveScreenWidth(100),

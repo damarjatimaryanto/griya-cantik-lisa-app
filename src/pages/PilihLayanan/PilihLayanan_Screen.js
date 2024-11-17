@@ -7,16 +7,18 @@ import Layanan_Horizontal from '../../shared/component/Layanan/Layanan_Horizonta
 import COLORS from '../../shared/enum/colors_library';
 import { DATA_HairCare } from '../../shared/services/DATA_HairCare';
 import { DATA_Kategori } from '../../shared/services/DATA_Kategori';
-import { createRef, useRef, useState } from 'react';
+import React, { createRef, useRef, useState } from 'react';
 import { responsiveScreenWidth } from 'react-native-responsive-dimensions';
 import ButtonPurple from '../../shared/component/Button/ButtonPurple';
 
-import { useNavigation } from '@react-navigation/native';
-import { Print_r } from '../../shared/helper/helper';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { formatRupiah, Print_r } from '../../shared/helper/helper';
+import { DATA_Product } from '../../shared/services/DATA_Product';
 
 export default function PilihLayanan_Screen() {
     const navigation = useNavigation();
     const [ModalDetail, setModalDetail] = useState(false);
+    const [selectedKategori, setSelectedKategori] = useState(null);
     const [SelectedLayanan, setSelectedLayanan] = useState([]);
     const toggleModal = () => { setModalDetail(!ModalDetail); };
     const selectItem = (item) => {
@@ -33,6 +35,15 @@ export default function PilihLayanan_Screen() {
     const calculateTotalPrice = () => {
         return SelectedLayanan.reduce((total, item) => total + item.harga, 0);
     }
+    const filteredProducts = selectedKategori
+        ? DATA_Product.filter(product => product.kategori_id === selectedKategori)
+        : DATA_Product;
+    useFocusEffect(
+        React.useCallback(() => {
+            setSelectedKategori(1);
+
+        }, [])
+    );
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
@@ -52,14 +63,14 @@ export default function PilihLayanan_Screen() {
                             <ScrollView showsHorizontalScrollIndicator={false} horizontal>
                                 {DATA_Kategori.map((item, index) => (
                                     <Layanan_Horizontal key={index} iconLayanan={item.icon} labelLayanan={item.nama_kategori}
-                                        isFocus={item.isFocused ? true : null} />
+                                        isFocus={selectedKategori === item.id_kategori ? true : null} onPress={() => { setSelectedKategori(selectedKategori === item.id_kategori ? null : item.id_kategori); }} />
                                 ))}
                             </ScrollView>
                         </View>
 
                         <View style={styles.KategoriContainer}>
                             <ScrollView showsVerticalScrollIndicator={false}>
-                                {DATA_HairCare.map((item, index) => (
+                                {filteredProducts.map((item, index) => (
                                     <TouchableOpacity key={index} style={styles.kategoriBox} onPress={() => selectItem(item)}>
                                         <View style={styles.kategoriBox_Left}>
                                             <Image source={item.image} style={styles.kategoriImage} />
@@ -67,7 +78,7 @@ export default function PilihLayanan_Screen() {
                                         <View style={styles.ketegoriBox_Center}>
                                             <View style={styles.keterangan_Top}>
                                                 <Text style={FontStyle.Manrope_Bold_16}>{item.nama}</Text>
-                                                <Text style={FontStyle.Manrope_Bold_16_Cyan}>{item.harga} </Text>
+                                                <Text style={FontStyle.Manrope_Bold_16_Cyan}>{formatRupiah(item.harga)} </Text>
                                                 <Text style={{ ...FontStyle.NunitoSans_Regular_12_grey, paddingTop: responsiveScreenWidth(2) }} numberOfLines={2}>{item.keterangan} </Text>
                                             </View>
                                         </View>
