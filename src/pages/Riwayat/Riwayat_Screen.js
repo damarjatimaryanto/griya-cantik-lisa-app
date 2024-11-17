@@ -12,9 +12,10 @@ export default function Riwayat_Screen() {
     const fetchDataRiwayat = async () => {
         // Ambil Data
         const allData = await getDataRiwayat();
-        // Print_r(allData);
+        Print_r(allData);
         setDataRiwayat(allData)
-        DataRiwayat.length;
+        console.log(DataRiwayat.length);
+        console.log(DataRiwayat);
 
     };
     useFocusEffect(
@@ -33,7 +34,7 @@ export default function Riwayat_Screen() {
                 <>
                     {DataRiwayat.map((item, index) => (
                         <TouchableOpacity key={index} style={styles.kategoriBox}>
-                            <Text>{item.harga}</Text>
+                            <Text>{item.totalHarga}</Text>
                         </TouchableOpacity>
                     ))}
                 </>
