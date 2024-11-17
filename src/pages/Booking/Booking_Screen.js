@@ -52,7 +52,7 @@ export default function Booking_Screen({ route }) {
         })
         addDataRiwayat(data)
 
-        Print_r(data);
+        // Print_r(data);
     }
 
     useFocusEffect(

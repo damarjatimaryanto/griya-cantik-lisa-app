@@ -11,7 +11,7 @@ export const GET_UserSession = async (setData) => {
         if (userSession) {
             const userObject = JSON.parse(userSession);
             const userArray = [userObject];
-            setData(userArray); // Pastikan field `nama_user` sesuai dengan data Anda.
+            setData(userArray); 
         }
     } catch (error) {
         console.error('Error fetching user session:', error);
@@ -24,8 +24,8 @@ export const GET_UserSession = async (setData) => {
 // **CREATE**: Tambah Data Baru
 export const addDataLiked = async (newData) => {
     try {
-        const existingData = await getDataLiked(); // Ambil data yang ada
-        const updatedData = [...(existingData || []), newData]; // Tambahkan data baru
+        const existingData = await getDataLiked(); 
+        const updatedData = [...(existingData || []), newData]; 
         await AsyncStorage.setItem(DATA_KEY, JSON.stringify(updatedData));
         console.log('Data berhasil ditambahkan!');
         ToastAndroid.show('Berhasil ditambahkan ke Disukai!', ToastAndroid.SHORT);
@@ -73,11 +73,11 @@ export const deleteDataLiked = async (id) => {
 
 
 
-// **CREATE**: Tambah Data Baru
+
 export const addDataRiwayat = async (newData) => {
     try {
-        const existingData = await getDataLiked(); // Ambil data yang ada
-        const updatedData = [...(existingData || []), newData]; // Tambahkan data baru
+        const existingData = await getDataRiwayat(); 
+        const updatedData = [...(existingData || []), newData]; 
         await AsyncStorage.setItem(DATA_KEY_riwayat, JSON.stringify(updatedData));
         console.log('Data berhasil ditambahkan!');
         ToastAndroid.show('Berhasil ditambahkan!', ToastAndroid.SHORT);
@@ -86,7 +86,6 @@ export const addDataRiwayat = async (newData) => {
     }
 };
 
-// **READ**: Ambil Data
 export const getDataRiwayat = async () => {
     try {
         const jsonValue = await AsyncStorage.getItem(DATA_KEY_riwayat);
@@ -96,6 +95,7 @@ export const getDataRiwayat = async () => {
         return [];
     }
 };
+
 
 // const exampleUsage = async () => {
 //     // Tambah Data Baru
