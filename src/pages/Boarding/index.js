@@ -1,11 +1,7 @@
 import {
   View,
   Text,
-  StyleSheet,
   StatusBar,
-  Dimensions,
-  Image,
-  TouchableOpacity,
   ImageBackground,
   SafeAreaView,
 } from "react-native";
