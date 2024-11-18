@@ -1,109 +1,109 @@
 import ICONS from "./icon.const";
-import Explore_Screen from "../../pages/Explore";
-import Riwayat_Screen from "../../pages/History";
-import Akun_Screen from "../../pages/Account";
-import Boarding_Screen from "../../pages/Boarding";
-import Login_Screen from "../../pages/Login";
-import Booking_Screen from "../../pages/Booking";
-import PilihLayanan_Screen from "../../pages/Services";
-import BookingCheckout_Screen from "../../pages/Checkout";
-import PilihPembayaran_Screen from "../../pages/Payment";
-import Liked_Screen from "../../pages/Liked";
-import Home_Screen from "../../pages/Home";
-import Splash from "../../pages/Splash";
+import ExploreScreen from "../../pages/Explore";
+import HistoryScreen from "../../pages/History";
+import AccountScreen from "../../pages/Account";
+import BoardingScreen from "../../pages/Boarding";
+import AuthenticationScreen from "../../pages/Login";
+import BookingScreen from "../../pages/Booking";
+import ServicesScreen from "../../pages/Services";
+import CheckoutScreen from "../../pages/Checkout";
+import PaymentScreen from "../../pages/Payment";
+import FavouriteScreen from "../../pages/Liked";
+import HomeScreen from "../../pages/Home";
+import SplashScreen from "../../pages/Splash";
 
 const tab = [
   {
-    name: "Home_Screen",
-    component: Home_Screen,
+    name: "HomeScreen",
+    component: HomeScreen,
     title: "Home",
     showIcon: true,
     iconSource: ICONS.tab_menu_home,
     headerShown: false,
   },
   {
-    name: "Explore_Screen",
-    component: Explore_Screen,
+    name: "ExploreScreen",
+    component: ExploreScreen,
     title: "Kategori",
     showIcon: true,
     iconSource: ICONS.tab_menu_explore,
     headerShown: false,
   },
   {
-    name: "Riwayat_Screen",
-    component: Riwayat_Screen,
+    name: "HistoryScreen",
+    component: HistoryScreen,
     title: "Riwayat",
     showIcon: true,
     iconSource: ICONS.tab_menu_riwayat,
     headerShown: false,
   },
   {
-    name: "Akun_Screen",
-    component: Akun_Screen,
+    name: "AccountScreen",
+    component: AccountScreen,
     title: "Akun",
     showIcon: true,
     iconSource: ICONS.tab_menu_akun,
     headerShown: false,
   },
   {
-    name: "Boarding_Screen",
-    component: Boarding_Screen,
+    name: "BoardingScreen",
+    component: BoardingScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,
     hideTabBar: true,
   },
   {
-    name: "Login_Screen",
-    component: Login_Screen,
+    name: "AuthenticationScreen",
+    component: AuthenticationScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,
     hideTabBar: true,
   },
   {
-    name: "Splash",
-    component: Splash,
+    name: "SplashScreen",
+    component: SplashScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,
     hideTabBar: true,
   },
   {
-    name: "Booking_Screen",
-    component: Booking_Screen,
+    name: "BookingScreen",
+    component: BookingScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,
     hideTabBar: true,
   },
   {
-    name: "PilihLayanan_Screen",
-    component: PilihLayanan_Screen,
+    name: "ServicesScreen",
+    component: ServicesScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,
     hideTabBar: true,
   },
   {
-    name: "BookingCheckout_Screen",
-    component: BookingCheckout_Screen,
+    name: "CheckoutScreen",
+    component: CheckoutScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,
     hideTabBar: true,
   },
   {
-    name: "PilihPembayaran_Screen",
-    component: PilihPembayaran_Screen,
+    name: "PaymentScreen",
+    component: PaymentScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,
     hideTabBar: true,
   },
   {
-    name: "Liked_Screen",
-    component: Liked_Screen,
+    name: "FavouriteScreen",
+    component: FavouriteScreen,
     title: "",
     headerShown: false,
     headerTransparent: true,

@@ -23,7 +23,7 @@ import {
 } from "../../shared/services/Asycnstorage";
 import { DATA_Product } from "../../shared/services/DATA_Product";
 
-export default function Explore_Screen({ route }) {
+export default function ExploreScreen({ route }) {
   const getData = route?.params?.data || null;
 
   const navigation = useNavigation();
@@ -175,7 +175,7 @@ export default function Explore_Screen({ route }) {
                     <TouchableOpacity
                       style={styles.buttonBoking}
                       onPress={() =>
-                        navigation.navigate("Booking_Screen", { data: item })
+                        navigation.navigate("BookingScreen", { data: item })
                       }
                     >
                       <Text style={FontStyle.Manrope_Bold_10_Cyan}>Boking</Text>

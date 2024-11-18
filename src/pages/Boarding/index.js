@@ -14,7 +14,7 @@ import styles from "./style";
 import FontStyle from "../../shared/style/font.style";
 import ButtonPurple from "../../shared/component/Button/ButtonPurple";
 
-export default function Boarding_Screen() {
+export default function BoardingScreen() {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -51,7 +51,7 @@ export default function Boarding_Screen() {
                 title={"Mulai"}
                 ButtonMarginBottom={responsiveScreenHeight(5)}
                 ButtonHeight={55}
-                onPress={() => navigation.navigate("Login_Screen")}
+                onPress={() => navigation.navigate("AuthenticationScreen")}
               />
 
               <Text

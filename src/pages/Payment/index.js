@@ -15,12 +15,12 @@ import { useNavigation } from "@react-navigation/native";
 import HeaderTop from "../../shared/component/Header/Header";
 import { DATA_Payment } from "../../shared/services/DATA_Payment";
 
-export default function PilihPembayaran_Screen(setJenisPembayaran) {
+export default function PaymentScreen(setJenisPembayaran) {
   const navigation = useNavigation();
 
   const selectItem = (item) => {
     setJenisPembayaran(item);
-    navigation.navigate("Booking_Screen");
+    navigation.navigate("BookingScreen");
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -28,7 +28,7 @@ export default function PilihPembayaran_Screen(setJenisPembayaran) {
         <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
         <HeaderTop
           title={"Pilih Pembayaran"}
-          NavigateTo={() => navigation.navigate("Booking_Screen")}
+          NavigateTo={() => navigation.navigate("BookingScreen")}
         />
         <ScrollView>
           <View style={styles.contentContainer}>

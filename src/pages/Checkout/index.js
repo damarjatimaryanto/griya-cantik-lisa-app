@@ -25,7 +25,7 @@ import {
   Print_r,
 } from "../../shared/helper/helper";
 
-export default function BookingCheckout_Screen({ route }) {
+export default function CheckoutScreen({ route }) {
   const navigation = useNavigation();
   const getData = route.params.data;
 
@@ -132,7 +132,7 @@ export default function BookingCheckout_Screen({ route }) {
             ButtonWidth={94}
             title={"Tutup"}
             ButtonHeight={55}
-            onPress={() => navigation.navigate("Riwayat_Screen")}
+            onPress={() => navigation.navigate("HistoryScreen")}
           />
         </View>
       </View>

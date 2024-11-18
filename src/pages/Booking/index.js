@@ -34,7 +34,7 @@ import {
 } from "./booking.config";
 import { addDataRiwayat } from "../../shared/services/Asycnstorage";
 
-export default function Booking_Screen({ route }) {
+export default function BookingScreen({ route }) {
   const getData = route.params.data;
   const navigation = useNavigation();
   const [ModalDetail, setModalDetail] = useState(false);
@@ -70,7 +70,7 @@ export default function Booking_Screen({ route }) {
       totalHarga: calculateTotalPrice(SelectedLayanan),
     };
 
-    navigation.navigate("BookingCheckout_Screen", {
+    navigation.navigate("CheckoutScreen", {
       data: data,
     });
     addDataRiwayat(data);
@@ -101,7 +101,7 @@ export default function Booking_Screen({ route }) {
               <Text style={FontStyle.Manrope_Bold_14}>Jenis Layanan</Text>
               <TouchableOpacity
                 style={styles.TambahStyle}
-                onPress={() => navigation.navigate("PilihLayanan_Screen")}
+                onPress={() => navigation.navigate("ServicesScreen")}
               >
                 <Image style={styles.btnPlus} source={ICONS.icon_plus} />
                 <Text style={FontStyle.Manrope_Medium_14_Cyan}>Tambah</Text>

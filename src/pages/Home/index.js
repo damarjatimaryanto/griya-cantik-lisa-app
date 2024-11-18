@@ -21,7 +21,7 @@ import { formatRupiah, Print_r } from "../../shared/helper/helper";
 import React, { useState } from "react";
 import { getUserSession } from "../../shared/services/Asycnstorage";
 
-export default function Home_Screen() {
+export default function HomeScreen() {
   const navigation = useNavigation();
   const [userData, setUserData] = useState([]);
 
@@ -53,7 +53,7 @@ export default function Home_Screen() {
             </View>
             <View style={styles.TopContainer_Right}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("Liked_Screen")}
+                onPress={() => navigation.navigate("FavouriteScreen")}
               >
                 <Image
                   source={ICONS.icon_heart}
@@ -80,7 +80,7 @@ export default function Home_Screen() {
                   iconLayanan={item.icon}
                   labelLayanan={item.nama_kategori}
                   onPress={() =>
-                    navigation.navigate("Explore_Screen", { data: item })
+                    navigation.navigate("ExploreScreen", { data: item })
                   }
                 />
               ))}

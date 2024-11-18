@@ -63,7 +63,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Splash"
+        initialRouteName="SplashScreen"
         screenOptions={{
           headerTitleStyle: mainStyle.headerTitleStyle,
           headerStyle: mainStyle.hea,

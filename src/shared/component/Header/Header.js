@@ -29,7 +29,7 @@ const HeaderTop = ({ title, NavigateTo }) => {
       <TouchableOpacity
         style={styles.headerButtonLeft}
         onPress={() =>
-          navigation.navigate(NavigateTo ? NavigateTo : "Home_Screen")
+          navigation.navigate(NavigateTo ? NavigateTo : "HomeScreen")
         }
       >
         <Image style={styles.btnImage} source={ICONS.icon_left} />

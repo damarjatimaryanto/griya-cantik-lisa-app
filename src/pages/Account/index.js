@@ -2,13 +2,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { Button, StatusBar, StyleSheet, Text, View } from "react-native";
 
-export default function Akun_Screen() {
+export default function AccountScreen() {
   const navigation = useNavigation();
   const Keluar = async () => {
     await AsyncStorage.removeItem("loggedIn");
     await AsyncStorage.removeItem("userData");
 
-    navigation.navigate("Login_Screen");
+    navigation.navigate("AuthenticationScreen");
     AsyncStorage.clear();
   };
   return (

@@ -21,7 +21,7 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { formatRupiah, Print_r } from "../../shared/helper/helper";
 import { DATA_Product } from "../../shared/services/DATA_Product";
 
-export default function PilihLayanan_Screen() {
+export default function ServicesScreen() {
   const navigation = useNavigation();
   const [ModalDetail, setModalDetail] = useState(false);
   const [selectedKategori, setSelectedKategori] = useState(null);
@@ -176,7 +176,7 @@ export default function PilihLayanan_Screen() {
               title={"Simpan"}
               ButtonHeight={55}
               onPress={() =>
-                navigation.navigate("Booking_Screen", {
+                navigation.navigate("BookingScreen", {
                   data: SelectedLayanan,
                 })
               }

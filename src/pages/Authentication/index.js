@@ -1,7 +1,7 @@
 import { Text, View, StatusBar, SafeAreaView } from "react-native";
 import React, { useState, createRef } from "react";
 import { useNavigation } from "@react-navigation/native";
-import styles from "./style";
+import styles from "./style.js";
 import ICONS from "../../shared/consts/icon.const.js";
 import ButtonPurple from "../../shared/component/Button/ButtonPurple.js";
 import CustomTextInput from "../../shared/component/Textinput/CustomTextInput.js";
@@ -9,7 +9,7 @@ import FontStyle from "../../shared/style/font.style.js";
 import { responsiveScreenHeight } from "react-native-responsive-dimensions";
 import { handleLogin } from "./login.config.js";
 
-const Login_Screen = () => {
+const AuthenticationScreen = () => {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -63,4 +63,4 @@ const Login_Screen = () => {
   );
 };
 
-export default Login_Screen;
+export default AuthenticationScreen;

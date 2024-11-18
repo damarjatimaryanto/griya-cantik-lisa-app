@@ -21,7 +21,7 @@ import {
   getDataLiked,
 } from "../../shared/services/Asycnstorage";
 
-export default function Liked_Screen() {
+export default function FavouriteScreen() {
   const navigation = useNavigation();
   const [ModalDetail, setModalDetail] = useState(false);
   const [SelectedItem, setSelectedItem] = useState([]);
@@ -60,7 +60,7 @@ export default function Liked_Screen() {
 
         <HeaderTop
           title={"Disukai"}
-          NavigateTo={() => navigation.navigate("Home_Screen")}
+          NavigateTo={() => navigation.navigate("HomeScreen")}
         />
 
         <View style={styles.KategoriContainer}>
@@ -112,7 +112,7 @@ export default function Liked_Screen() {
                         <TouchableOpacity
                           style={styles.buttonBoking}
                           onPress={() =>
-                            navigation.navigate("Booking_Screen", {
+                            navigation.navigate("BookingScreen", {
                               data: item,
                             })
                           }
