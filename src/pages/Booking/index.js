@@ -1,4 +1,3 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   Image,
   SafeAreaView,
@@ -12,7 +11,7 @@ import styles from "./style";
 import ICONS from "../../shared/consts/icon.const";
 import FontStyle from "../../shared/style/font.style";
 import COLORS from "../../shared/consts/colors.const";
-import React, { useEffect, useState, useCallback, createRef } from "react";
+import React, { useState, createRef } from "react";
 import { DATA_Spesialis } from "../../shared/services/DATA_Spesialis";
 import { responsiveScreenWidth } from "react-native-responsive-dimensions";
 import { DATA_waktu } from "../../shared/services/DATA_waktu";
@@ -75,7 +74,6 @@ export default function Booking_Screen({ route }) {
       data: data,
     });
     addDataRiwayat(data);
-
     // Print_r(data);
   };
 

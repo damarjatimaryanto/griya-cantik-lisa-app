@@ -1,23 +1,6 @@
-import {
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  Alert,
-  StatusBar,
-  Dimensions,
-  TextInput,
-  TouchableOpacity,
-  Modal,
-  PixelRatio,
-  ToastAndroid,
-  SafeAreaView,
-  ScrollView,
-  KeyboardAvoidingView,
-  BackHandler,
-} from "react-native";
-import React, { useRef, useEffect, useState, createRef } from "react";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { Text, View, StatusBar, SafeAreaView } from "react-native";
+import React, { useState, createRef } from "react";
+import { useNavigation } from "@react-navigation/native";
 import styles from "./style";
 import ICONS from "../../shared/consts/icon.const.js";
 import ButtonPurple from "../../shared/component/Button/ButtonPurple.js";

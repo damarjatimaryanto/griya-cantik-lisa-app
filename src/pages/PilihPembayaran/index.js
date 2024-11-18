@@ -1,4 +1,3 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   Image,
   SafeAreaView,
@@ -11,16 +10,8 @@ import {
 import styles from "./style";
 import ICONS from "../../shared/consts/icon.const";
 import FontStyle from "../../shared/style/font.style";
-import Layanan_Horizontal from "../../shared/component/Layanan/Layanan_Horizontal";
-import COLORS from "../../shared/consts/colors.const";
-import { DATA_HairCare } from "../../shared/services/DATA_HairCare";
-import { DATA_Kategori } from "../../shared/services/DATA_Kategori";
-import { createRef, useRef, useState } from "react";
-import { responsiveScreenWidth } from "react-native-responsive-dimensions";
-import ButtonPurple from "../../shared/component/Button/ButtonPurple";
 
 import { useNavigation } from "@react-navigation/native";
-import { Print_r } from "../../shared/helper/helper";
 import HeaderTop from "../../shared/component/Header/Header";
 import { DATA_Payment } from "../../shared/services/DATA_Payment";
 

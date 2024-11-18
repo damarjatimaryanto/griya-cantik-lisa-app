@@ -1,4 +1,3 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   Image,
   SafeAreaView,
@@ -9,10 +8,8 @@ import {
   View,
 } from "react-native";
 import styles from "./style";
-import ICONS from "../../shared/consts/icon.const";
 import FontStyle from "../../shared/style/font.style";
-import COLORS from "../../shared/consts/colors.const";
-import React, { createRef, useRef, useState } from "react";
+import React from "react";
 import ButtonPurple from "../../shared/component/Button/ButtonPurple";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import CheckoutContainerVertical from "../../shared/component/CheckoutComponent/CheckoutContainerVertical";
