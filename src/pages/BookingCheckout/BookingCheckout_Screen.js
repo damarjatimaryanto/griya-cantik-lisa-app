@@ -1,110 +1,144 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, SafeAreaView, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
-import styles from './BookingCheckout_Style';
-import ICONS from '../../shared/enum/icon_library';
-import FontStyle from '../../shared/style/FontStyle';
-import COLORS from '../../shared/enum/colors_library';
-import React, { createRef, useRef, useState } from 'react';
-import ButtonPurple from '../../shared/component/Button/ButtonPurple';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import CheckoutContainerVertical from '../../shared/component/CheckoutComponent/CheckoutContainerVertical';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import styles from "./BookingCheckout_Style";
+import ICONS from "../../shared/consts/icon_library";
+import FontStyle from "../../shared/style/FontStyle";
+import COLORS from "../../shared/consts/colors_library";
+import React, { createRef, useRef, useState } from "react";
+import ButtonPurple from "../../shared/component/Button/ButtonPurple";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import CheckoutContainerVertical from "../../shared/component/CheckoutComponent/CheckoutContainerVertical";
 
-import LineHorizontal from '../../shared/component/LineHorizontal/LineHorizontal';
-import CheckoutContainerHorizontal from '../../shared/component/CheckoutComponent/CheckoutContainerHorizontal';
-import { responsiveScreenHeight } from 'react-native-responsive-dimensions';
-import HeaderTop from '../../shared/component/Header/Header';
-import { convertToIndonesianDate, copyToClipboard, formatRupiah, Print_r } from '../../shared/helper/helper';
+import LineHorizontal from "../../shared/component/LineHorizontal/LineHorizontal";
+import CheckoutContainerHorizontal from "../../shared/component/CheckoutComponent/CheckoutContainerHorizontal";
+import { responsiveScreenHeight } from "react-native-responsive-dimensions";
+import HeaderTop from "../../shared/component/Header/Header";
+import {
+  convertToIndonesianDate,
+  copyToClipboard,
+  formatRupiah,
+  Print_r,
+} from "../../shared/helper/helper";
 
 export default function BookingCheckout_Screen({ route }) {
-    const navigation = useNavigation();
-    const getData = route.params.data;
+  const navigation = useNavigation();
+  const getData = route.params.data;
 
-    useFocusEffect(
-        React.useCallback(() => {
+  useFocusEffect(
+    React.useCallback(() => {
+      Print_r(getData);
+    }, [getData])
+  );
 
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
 
-            Print_r(getData)
-
-        }, [getData])
-    );
-
-    return (
-        <SafeAreaView style={{ flex: 1 }}>
-
-            <View style={styles.container}>
-                <StatusBar barStyle={"dark-content"} backgroundColor={'white'} />
-
-
-                <HeaderTop title={'Booking Checkout'} />
-                <ScrollView>
-                    <View style={styles.contentContainer}>
-
-                        <View style={styles.checkoutBox}>
-                            <View style={styles.checkoutBox_Content}>
-                                <View style={styles.row}>
-                                    <CheckoutContainerVertical title={'Tanggal'} label={getData ? convertToIndonesianDate(getData.tanggal) : 'invalid date'} />
-                                    <CheckoutContainerVertical title={'Waktu'} label={getData ? getData.waktu : 'invalid Time'} paddingLeft={6} />
-                                    <CheckoutContainerVertical title={'Spesialis'} label={getData ? getData.spesialis : 'Unknown'} />
-
-                                </View>
-                                <LineHorizontal isSolid={true} />
-
-                                <Text style={{ ...FontStyle.NunitoSans_Regular_14, paddingBottom: responsiveScreenHeight(1) }}>Layanan</Text>
-
-                                {getData && (
-                                    <>
-                                        {getData.layanan.map((item, index) => (
-
-                                            <CheckoutContainerHorizontal key={index} title={item.nama} label={formatRupiah(item.harga)} />
-
-                                        ))}
-                                    </>
-                                )}
-
-
-                                <LineHorizontal />
-
-                                <CheckoutContainerHorizontal title={'Sub Total'} label={formatRupiah(getData.totalHarga)} />
-
-                                <LineHorizontal isRounded={true} marginVertical={4} height={4} />
-
-
-                                <View style={styles.Pembayaran}>
-                                    <View style={styles.PembayaranImg}>
-                                        <Image source={getData.jenisPembayaran.icon} style={styles.payImgStyle} />
-                                    </View>
-                                    <View style={styles.pembayaranDetail}>
-
-                                        <Text style={FontStyle.Manrope_Bold_14}>{getData.jenisPembayaran.nama_payment}</Text>
-                                        <Text style={FontStyle.NunitoSans_Regular_14}>28927386289928</Text>
-
-                                    </View>
-                                    <TouchableOpacity style={styles.pembayaranSalin} onPress={() => copyToClipboard('aslkdhjaksjhdashd')}>
-                                        <Text style={FontStyle.NunitoSans_Regular_14}>Salin</Text>
-
-                                    </TouchableOpacity>
-                                </View>
-
-                            </View>
-
-
-                        </View>
-
-                    </View>
-                </ScrollView>
-
-                <View style={styles.FloatingBottomContainer}>
-
-                    <ButtonPurple ButtonWidth={94} title={'Tutup'} ButtonHeight={55} onPress={() => navigation.navigate('Riwayat_Screen')} />
-
+        <HeaderTop title={"Booking Checkout"} />
+        <ScrollView>
+          <View style={styles.contentContainer}>
+            <View style={styles.checkoutBox}>
+              <View style={styles.checkoutBox_Content}>
+                <View style={styles.row}>
+                  <CheckoutContainerVertical
+                    title={"Tanggal"}
+                    label={
+                      getData
+                        ? convertToIndonesianDate(getData.tanggal)
+                        : "invalid date"
+                    }
+                  />
+                  <CheckoutContainerVertical
+                    title={"Waktu"}
+                    label={getData ? getData.waktu : "invalid Time"}
+                    paddingLeft={6}
+                  />
+                  <CheckoutContainerVertical
+                    title={"Spesialis"}
+                    label={getData ? getData.spesialis : "Unknown"}
+                  />
                 </View>
+                <LineHorizontal isSolid={true} />
+
+                <Text
+                  style={{
+                    ...FontStyle.NunitoSans_Regular_14,
+                    paddingBottom: responsiveScreenHeight(1),
+                  }}
+                >
+                  Layanan
+                </Text>
+
+                {getData && (
+                  <>
+                    {getData.layanan.map((item, index) => (
+                      <CheckoutContainerHorizontal
+                        key={index}
+                        title={item.nama}
+                        label={formatRupiah(item.harga)}
+                      />
+                    ))}
+                  </>
+                )}
+
+                <LineHorizontal />
+
+                <CheckoutContainerHorizontal
+                  title={"Sub Total"}
+                  label={formatRupiah(getData.totalHarga)}
+                />
+
+                <LineHorizontal
+                  isRounded={true}
+                  marginVertical={4}
+                  height={4}
+                />
+
+                <View style={styles.Pembayaran}>
+                  <View style={styles.PembayaranImg}>
+                    <Image
+                      source={getData.jenisPembayaran.icon}
+                      style={styles.payImgStyle}
+                    />
+                  </View>
+                  <View style={styles.pembayaranDetail}>
+                    <Text style={FontStyle.Manrope_Bold_14}>
+                      {getData.jenisPembayaran.nama_payment}
+                    </Text>
+                    <Text style={FontStyle.NunitoSans_Regular_14}>
+                      28927386289928
+                    </Text>
+                  </View>
+                  <TouchableOpacity
+                    style={styles.pembayaranSalin}
+                    onPress={() => copyToClipboard("aslkdhjaksjhdashd")}
+                  >
+                    <Text style={FontStyle.NunitoSans_Regular_14}>Salin</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
+          </View>
+        </ScrollView>
 
-
-
-
-
-        </SafeAreaView>
-    );
+        <View style={styles.FloatingBottomContainer}>
+          <ButtonPurple
+            ButtonWidth={94}
+            title={"Tutup"}
+            ButtonHeight={55}
+            onPress={() => navigation.navigate("Riwayat_Screen")}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
 }
-
