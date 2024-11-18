@@ -3,12 +3,12 @@ import ExploreScreen from "../../pages/Explore";
 import HistoryScreen from "../../pages/History";
 import AccountScreen from "../../pages/Account";
 import BoardingScreen from "../../pages/Boarding";
-import AuthenticationScreen from "../../pages/Login";
+import AuthenticationScreen from "../../pages/Authentication";
 import BookingScreen from "../../pages/Booking";
 import ServicesScreen from "../../pages/Services";
 import CheckoutScreen from "../../pages/Checkout";
 import PaymentScreen from "../../pages/Payment";
-import FavouriteScreen from "../../pages/Liked";
+import FavouriteScreen from "../../pages/Favourite";
 import HomeScreen from "../../pages/Home";
 import SplashScreen from "../../pages/Splash";
 
