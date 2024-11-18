@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { getFontSize } from "../../shared/helper/helper";
-import COLORS from "../../shared/consts/colors_library";
+import COLORS from "../../shared/consts/colors.const";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     // paddingTop: 30,
     alignItems: "center",
     backgroundColor: "white",
-    paddingBottom: 30,
+    paddingBottom: getFontSize(35),
   },
   TopContainer: {
     // backgroundColor: 'pink',
@@ -36,58 +36,48 @@ const styles = StyleSheet.create({
     marginTop: getFontSize(3),
   },
 
-  //Card Style
-  CardContainer: {
-    // backgroundColor: 'pink',
-    // height: 150,
-    width: responsiveScreenWidth(100),
-    paddingLeft: responsiveScreenWidth(3),
-    marginVertical: responsiveScreenHeight(1),
-  },
-  CardStyle: {
-    width: responsiveScreenWidth(90),
-    resizeMode: "contain",
-    height: 150,
-    marginRight: responsiveScreenWidth(3),
-  },
-
-  //Layanan Style
-  LayananContainer: {
-    width: responsiveScreenWidth(94),
-  },
-  LayananList: {
-    width: responsiveScreenWidth(94),
-    marginTop: getFontSize(10),
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
-  PalingDicariContainer: {
+  KategoriListContainer: {
     marginTop: 20,
     // height: 150,
     width: responsiveScreenWidth(94),
   },
-  LayananList_Horizontal: {
+  KategoriList_Horizontal: {
     width: responsiveScreenWidth(100),
     // paddingLeft: responsiveScreenWidth(3),
-    marginVertical: responsiveScreenHeight(1),
+    marginVertical: responsiveScreenHeight(2),
     paddingRight: responsiveScreenWidth(3),
+  },
+  KategoriStyle: {
+    width: responsiveScreenWidth(30),
+    // paddingLeft: responsiveScreenWidth(3),
+
+    backgroundColor: "white",
+    borderColor: COLORS.grey,
+    borderWidth: 1.5,
+    paddingVertical: responsiveScreenHeight(1),
+    borderRadius: responsiveScreenWidth(100),
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: responsiveScreenWidth(2),
   },
   KategoriContainer: {
     width: responsiveScreenWidth(100),
     paddingLeft: responsiveScreenWidth(3),
-    marginVertical: responsiveScreenHeight(2),
+    marginVertical: responsiveScreenHeight(1),
     paddingRight: responsiveScreenWidth(2),
-    // backgroundColor: 'pink'
+    // backgroundColor: 'pink',
+    marginBottom: getFontSize(60),
+    // paddingBottom: 50
   },
   kategoriBox: {
-    width: responsiveScreenWidth(90),
+    width: responsiveScreenWidth(94),
     resizeMode: "contain",
     height: responsiveScreenWidth(35),
     marginRight: responsiveScreenWidth(3),
     backgroundColor: "white",
     borderRadius: responsiveScreenWidth(2),
     flexDirection: "row",
+    marginBottom: responsiveScreenWidth(3),
 
     shadowColor: "rgba(27, 46, 94, 0.3)",
     shadowOffset: { width: 0, height: 4 },
@@ -103,7 +93,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'yellow'
   },
   ketegoriBox_Right: {
-    width: responsiveScreenWidth(55),
+    width: responsiveScreenWidth(54),
     resizeMode: "contain",
     // height: 150,
     marginRight: responsiveScreenWidth(3),
@@ -128,14 +118,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   keterangan_Top: {
-    width: responsiveScreenWidth(51),
+    width: responsiveScreenWidth(53),
     resizeMode: "contain",
     height: responsiveScreenWidth(21),
     // marginRight: responsiveScreenWidth(3),
     // backgroundColor: 'yellow'
   },
   keterangan_Bot: {
-    width: responsiveScreenWidth(51),
+    width: responsiveScreenWidth(53),
     resizeMode: "contain",
     height: responsiveScreenWidth(10),
     // marginRight: responsiveScreenWidth(3),

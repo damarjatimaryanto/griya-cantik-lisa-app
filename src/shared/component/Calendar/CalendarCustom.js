@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import moment from "moment";
 moment.locale("id"); // Atur bahasa Indonesia
-import ICONS from "../../consts/icon_library";
+import ICONS from "../../consts/icon.const";
 import { getFontSize } from "../../helper/helper";
-import COLORS from "../../consts/colors_library";
-import FontStyle from "../../style/FontStyle";
+import COLORS from "../../consts/colors.const";
+import FontStyle from "../../style/font.style";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,

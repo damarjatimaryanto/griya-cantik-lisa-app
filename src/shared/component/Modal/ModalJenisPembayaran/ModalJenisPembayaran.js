@@ -9,8 +9,8 @@ import {
   StatusBar,
 } from "react-native";
 import styles from "./ModalJenisPembayaran_Style.js";
-import ICONS from "../../../consts/icon_library.js";
-import FontStyle from "../../../style/FontStyle.js";
+import ICONS from "../../../consts/icon.const.js";
+import FontStyle from "../../../style/font.style.js";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,

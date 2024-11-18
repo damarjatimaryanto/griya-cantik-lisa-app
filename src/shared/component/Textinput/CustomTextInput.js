@@ -11,9 +11,9 @@ import {
   responsiveScreenHeight,
   responsiveScreenWidth,
 } from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors_library";
+import COLORS from "../../consts/colors.const";
 import { getFontSize } from "../../helper/helper";
-import ICONS from "../../consts/icon_library";
+import ICONS from "../../consts/icon.const";
 
 const CustomTextInput = ({
   input,

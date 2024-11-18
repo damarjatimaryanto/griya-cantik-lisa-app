@@ -16,8 +16,8 @@ import {
   responsiveScreenWidth,
   responsiveScreenFontSize,
 } from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors_library";
-import FontStyle from "../../style/FontStyle";
+import COLORS from "../../consts/colors.const";
+import FontStyle from "../../style/font.style";
 
 const Layanan_Horizontal = ({
   onPress,

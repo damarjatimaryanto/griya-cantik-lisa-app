@@ -8,18 +8,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import styles from "./Home_Style";
-import ICONS from "../../shared/consts/icon_library";
-import FontStyle from "../../shared/style/FontStyle";
+import styles from "./style";
+import ICONS from "../../shared/consts/icon.const";
+import FontStyle from "../../shared/style/font.style";
 import Layanan from "../../shared/component/Layanan/Layanan";
 import Layanan_Horizontal from "../../shared/component/Layanan/Layanan_Horizontal";
-import COLORS from "../../shared/consts/colors_library";
+import COLORS from "../../shared/consts/colors.const";
 import { DATA_HairCare } from "../../shared/services/DATA_HairCare";
 import { DATA_Kategori } from "../../shared/services/DATA_Kategori";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { formatRupiah, Print_r } from "../../shared/helper/helper";
 import React, { useState } from "react";
-import { GET_UserSession } from "../../shared/services/Asycnstorage";
+import { getUserSession } from "../../shared/services/Asycnstorage";
 
 export default function Home_Screen() {
   const navigation = useNavigation();
@@ -27,7 +27,7 @@ export default function Home_Screen() {
 
   useFocusEffect(
     React.useCallback(() => {
-      GET_UserSession(setUserData);
+      getUserSession(setUserData);
     }, [])
   );
 

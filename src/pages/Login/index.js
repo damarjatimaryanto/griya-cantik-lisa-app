@@ -18,13 +18,13 @@ import {
 } from "react-native";
 import React, { useRef, useEffect, useState, createRef } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import styles from "./Login_Style";
-import ICONS from "../../shared/consts/icon_library.js";
+import styles from "./style";
+import ICONS from "../../shared/consts/icon.const.js";
 import ButtonPurple from "../../shared/component/Button/ButtonPurple.js";
 import CustomTextInput from "../../shared/component/Textinput/CustomTextInput.js";
-import FontStyle from "../../shared/style/FontStyle.js";
+import FontStyle from "../../shared/style/font.style.js";
 import { responsiveScreenHeight } from "react-native-responsive-dimensions";
-import { handleLogin } from "./Login_Config.js";
+import { handleLogin } from "./login.config.js";
 
 const Login_Screen = () => {
   const navigation = useNavigation();

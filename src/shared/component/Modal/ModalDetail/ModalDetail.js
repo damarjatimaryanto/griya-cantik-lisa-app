@@ -8,8 +8,8 @@ import {
   ScrollView,
 } from "react-native";
 import styles from "./ModalDetail_Style.js";
-import ICONS from "../../../consts/icon_library.js";
-import FontStyle from "../../../style/FontStyle.js";
+import ICONS from "../../../consts/icon.const.js";
+import FontStyle from "../../../style/font.style";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,

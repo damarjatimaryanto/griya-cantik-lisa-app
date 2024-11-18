@@ -1,10 +1,6 @@
 import { StyleSheet } from "react-native";
-import COLORS from "../consts/colors_library";
+import COLORS from "../consts/colors.const";
 import { getFontSize } from "../helper/helper";
-import {
-  responsiveScreenHeight,
-  responsiveScreenWidth,
-} from "react-native-responsive-dimensions";
 
 const FontStyle = StyleSheet.create({
   Manrope_Bold_24: {
@@ -105,7 +101,6 @@ const FontStyle = StyleSheet.create({
     fontSize: getFontSize(14),
     color: COLORS.cyan_font,
   },
-
   NunitoSans_Regular_16: {
     fontFamily: "NunitoSans-Regular",
     fontSize: getFontSize(16),

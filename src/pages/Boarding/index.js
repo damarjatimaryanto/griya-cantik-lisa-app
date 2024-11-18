@@ -13,9 +13,9 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { responsiveScreenHeight } from "react-native-responsive-dimensions";
 
-import ICONS from "../../shared/consts/icon_library";
-import styles from "./Boarding_Style";
-import FontStyle from "../../shared/style/FontStyle";
+import ICONS from "../../shared/consts/icon.const";
+import styles from "./style";
+import FontStyle from "../../shared/style/font.style";
 import ButtonPurple from "../../shared/component/Button/ButtonPurple";
 
 export default function Boarding_Screen() {

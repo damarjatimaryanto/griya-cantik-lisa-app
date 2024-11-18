@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, PixelRatio, Image } from "react-native";
 import { getFontSize } from "../helper/helper";
-import COLORS from "../consts/colors_library";
+import COLORS from "../consts/colors.const";
 
 const mainStyle = StyleSheet.create({
   container: {

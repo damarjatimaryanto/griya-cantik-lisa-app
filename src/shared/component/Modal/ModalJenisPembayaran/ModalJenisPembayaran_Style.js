@@ -7,7 +7,7 @@ import {
   responsiveScreenWidth,
   responsiveScreenFontSize,
 } from "react-native-responsive-dimensions";
-import COLORS from "../../../consts/colors_library";
+import COLORS from "../../../consts/colors.const";
 import { getFontSize } from "../../../helper/helper";
 const styles = StyleSheet.create({
   //? Style modal container ==================================================

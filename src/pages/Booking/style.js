@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { getFontSize } from "../../shared/helper/helper";
-import COLORS from "../../shared/consts/colors_library";
+import COLORS from "../../shared/consts/colors.const";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
@@ -37,17 +37,6 @@ const styles = StyleSheet.create({
     // backgroundColor: 'yellow',
     width: responsiveScreenWidth(8),
   },
-  PalingDicariContainer: {
-    marginTop: 20,
-    // height: 150,
-    width: responsiveScreenWidth(94),
-  },
-  LayananList_Horizontal: {
-    width: responsiveScreenWidth(100),
-    // paddingLeft: responsiveScreenWidth(3),
-    // marginVertical: responsiveScreenHeight(1),
-    paddingLeft: responsiveScreenWidth(3),
-  },
 
   KategoriContainer: {
     width: responsiveScreenWidth(100),
@@ -75,34 +64,31 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   kategoriBox_Left: {
-    width: responsiveScreenWidth(30),
+    width: responsiveScreenWidth(20),
   },
   ketegoriBox_Center: {
-    width: responsiveScreenWidth(50),
+    width: responsiveScreenWidth(56),
     padding: responsiveScreenWidth(3),
     justifyContent: "center",
-    // backgroundColor: 'pink'
   },
   ketegoriBox_Right: {
-    width: responsiveScreenWidth(13),
-    // backgroundColor: 'yellow',
+    width: responsiveScreenWidth(17),
+    // backgroundColor: 'pink',
     padding: responsiveScreenWidth(2),
     justifyContent: "center",
     alignItems: "center",
   },
   kategoriImage: {
-    width: responsiveScreenWidth(30),
-    height: responsiveScreenWidth(30),
-    borderTopLeftRadius: responsiveScreenWidth(2),
-    borderBottomLeftRadius: responsiveScreenWidth(2),
+    width: responsiveScreenWidth(20),
+    height: responsiveScreenWidth(20),
+    borderRadius: responsiveScreenWidth(2),
   },
 
   keterangan_Top: {
-    width: responsiveScreenWidth(40),
-    justifyContent: "space-between",
+    width: responsiveScreenWidth(50),
   },
   keterangan_Bot: {
-    width: responsiveScreenWidth(40),
+    width: responsiveScreenWidth(50),
     flexDirection: "row",
     // justifyContent: 'space-between',
     alignItems: "center",
@@ -123,20 +109,10 @@ const styles = StyleSheet.create({
     borderRadius: getFontSize(100),
     marginHorizontal: responsiveScreenWidth(1),
   },
-  minus_style: {
+  plusminus_style: {
     borderRadius: responsiveScreenWidth(100),
     borderColor: COLORS.red,
     borderWidth: 1,
-    height: responsiveScreenWidth(10),
-    width: responsiveScreenWidth(10),
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  plus_style: {
-    borderRadius: responsiveScreenWidth(100),
-    // borderColor: COLORS.red,
-    // borderWidth: 1,
-    backgroundColor: COLORS.purple,
     height: responsiveScreenWidth(10),
     width: responsiveScreenWidth(10),
     justifyContent: "center",
@@ -269,6 +245,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: responsiveScreenWidth(2),
+  },
+  PembayaranImageContainer: {
+    width: responsiveScreenWidth(100),
+    // paddingLeft: responsiveScreenWidth(3),
+    marginBottom: responsiveScreenHeight(2),
+    paddingHorizontal: responsiveScreenWidth(3),
+  },
+  PembayaranImage: {
+    width: responsiveScreenWidth(20),
+    height: responsiveScreenWidth(10),
+    borderTopLeftRadius: responsiveScreenWidth(2),
+    borderBottomLeftRadius: responsiveScreenWidth(2),
+    resizeMode: "contain",
   },
   FloatingBottomContainer: {
     backgroundColor: "white",

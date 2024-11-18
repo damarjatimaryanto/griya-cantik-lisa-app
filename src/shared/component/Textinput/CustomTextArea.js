@@ -11,7 +11,7 @@ import {
   responsiveScreenHeight,
   responsiveScreenWidth,
 } from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors_library";
+import COLORS from "../../consts/colors.const";
 import { getFontSize } from "../../helper/helper";
 
 const CustomTextArea = ({

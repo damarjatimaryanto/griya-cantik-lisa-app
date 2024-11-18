@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import styles from "./Booking_Style";
-import ICONS from "../../shared/consts/icon_library";
-import FontStyle from "../../shared/style/FontStyle";
-import COLORS from "../../shared/consts/colors_library";
+import styles from "./style";
+import ICONS from "../../shared/consts/icon.const";
+import FontStyle from "../../shared/style/font.style";
+import COLORS from "../../shared/consts/colors.const";
 import React, { useEffect, useState, useCallback, createRef } from "react";
 import { DATA_Spesialis } from "../../shared/services/DATA_Spesialis";
 import { responsiveScreenWidth } from "react-native-responsive-dimensions";
@@ -32,7 +32,7 @@ import ModalJenisPembayaran from "../../shared/component/Modal/ModalJenisPembaya
 import {
   addItemToSelectedLayanan,
   removeItemFromSelectedLayanan,
-} from "./Booking_Config";
+} from "./booking.config";
 import { addDataRiwayat } from "../../shared/services/Asycnstorage";
 
 export default function Booking_Screen({ route }) {

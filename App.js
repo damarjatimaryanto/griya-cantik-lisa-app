@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Image, View } from "react-native";
 import { useFonts } from "expo-font";
-import { fontImports } from "./src/shared/consts/font_library";
+import { fontImports } from "./src/shared/consts/font.const";
 import mainStyle from "./src/shared/style/main.style";
-import COLORS from "./src/shared/consts/colors_library";
+import COLORS from "./src/shared/consts/colors.const";
 import tab from "./src/shared/consts/tab.const";
 
 const Tab = createBottomTabNavigator();

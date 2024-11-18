@@ -16,10 +16,10 @@ import {
   responsiveScreenWidth,
   responsiveScreenFontSize,
 } from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors_library";
+import COLORS from "../../consts/colors.const";
 import { getFontSize } from "../../helper/helper";
-import FontStyle from "../../style/FontStyle";
-import ICONS from "../../consts/icon_library";
+import FontStyle from "../../style/font.style";
+import ICONS from "../../consts/icon.const";
 import { useNavigation } from "@react-navigation/native";
 
 const HeaderTop = ({ title, NavigateTo }) => {

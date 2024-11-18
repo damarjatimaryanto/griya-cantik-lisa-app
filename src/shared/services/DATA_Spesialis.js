@@ -1,4 +1,4 @@
-import ICONS from "../consts/icon_library";
+import ICONS from "../consts/icon.const";
 
 export const DATA_Spesialis = [
   {

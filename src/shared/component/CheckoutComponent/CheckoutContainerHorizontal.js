@@ -16,9 +16,9 @@ import {
   responsiveScreenWidth,
   responsiveScreenFontSize,
 } from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors_library";
+import COLORS from "../../consts/colors.const";
 import { getFontSize } from "../../helper/helper";
-import FontStyle from "../../style/FontStyle";
+import FontStyle from "../../style/font.style";
 
 const CheckoutContainerHorizontal = ({ label, title, paddingLeft }) => {
   return (

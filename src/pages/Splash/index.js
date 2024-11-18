@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar, StyleSheet, Text, View } from "react-native";
-import COLORS from "../../shared/consts/colors_library";
+import COLORS from "../../shared/consts/colors.const";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
-import FontStyle from "../../shared/style/FontStyle";
+import FontStyle from "../../shared/style/font.style";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Splash() {
