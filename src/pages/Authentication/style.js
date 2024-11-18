@@ -19,36 +19,26 @@ const styles = StyleSheet.create({
   mid_container: {
     height: responsiveScreenHeight(95),
     width: responsiveScreenWidth(100),
-    // backgroundColor: "pink",
-    // justifyContent: 'flex-end',
     justifyContent: "center",
-    // marginTop: responsiveHeight(10),
     alignItems: "center",
   },
-
   title_container: {
-    // alignItems: "center",
     marginBottom: responsiveScreenHeight(7),
-    // backgroundColor: 'pink',
     width: responsiveScreenWidth(94),
   },
   form_container: {
     width: responsiveScreenWidth(100),
-    // marginHorizontal: responsiveScreenWidth(5),
     alignItems: "center",
   },
-
   form_style: {
     flexDirection: "row",
     width: "100%",
     height: 50,
     borderRadius: responsiveScreenHeight(50),
     marginVertical: 4.5,
-
     borderWidth: 1,
     borderColor: "grey",
     marginBottom: 16,
-    // backgroundColor: 'cyan'
   },
   icon_style: {
     width: getFontSize(16),
@@ -65,10 +55,8 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: 'grey',
   },
   input_container: {
-    // backgroundColor: "yellow",
     width: "70%",
     height: "100%",
     justifyContent: "center",
@@ -77,7 +65,6 @@ const styles = StyleSheet.create({
     fontFamily: "Manrope-Regular",
     color: "black",
     fontSize: getFontSize(12),
-    // backgroundColor: 'pink',
     height: 48,
   },
   show_container: {
@@ -85,8 +72,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: COLORS.abusoft,
-    // opacity: 0.5,
   },
 });
 

@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { Button, StatusBar, StyleSheet, Text, View } from "react-native";
+import { styles } from "./style";
 
 export default function AccountScreen() {
   const navigation = useNavigation();
@@ -19,12 +20,3 @@ export default function AccountScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "yellow",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

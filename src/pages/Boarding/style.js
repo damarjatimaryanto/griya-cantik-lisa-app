@@ -9,7 +9,6 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: 30,
     alignItems: "center",
     backgroundColor: "white",
   },
@@ -17,7 +16,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: responsiveScreenWidth(100),
     height: responsiveScreenHeight(100),
-    // justifyContent: "center",
     alignItems: "center",
   },
   contentContainer: {
@@ -29,15 +27,12 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    // backgroundColor: COLORS.blackTransparent,
     width: responsiveScreenWidth(94),
     height: responsiveScreenHeight(50),
-
     alignItems: "center",
     justifyContent: "center",
   },
   headerStyle: {
-    // backgroundColor: 'pink',
     width: responsiveScreenWidth(94),
     height: responsiveScreenHeight(18),
     justifyContent: "space-between",
