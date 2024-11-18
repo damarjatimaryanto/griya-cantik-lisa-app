@@ -1,21 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Modal,
-  TouchableOpacity,
-  Text,
-  Image,
-  View,
-  StyleSheet,
-  Animated,
-} from "react-native";
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize,
-  responsiveScreenHeight,
-  responsiveScreenWidth,
-  responsiveScreenFontSize,
-} from "react-native-responsive-dimensions";
+import React from "react";
+import { TouchableOpacity, Text, Image, View, StyleSheet } from "react-native";
+import { responsiveScreenWidth } from "react-native-responsive-dimensions";
 import COLORS from "../../consts/colors.const";
 import { getFontSize } from "../../helper/helper";
 import FontStyle from "../../style/font.style";
@@ -40,20 +25,11 @@ export default Layanan;
 
 const styles = StyleSheet.create({
   LayananStyle: {
-    // backgroundColor: 'yellow',
     width: responsiveScreenWidth(20),
-    // height: responsiveScreenWidth(20),
     minHeight: 48,
-    // borderRadius: responsiveScreenHeight(70),
-    // borderWidth: 1.5,
-    // borderColor: COLORS.grey_soft,
-    // justifyContent: 'center',
     alignItems: "center",
-    // flexDirection: 'row',
-    // paddingLeft: responsiveScreenWidth(2),
     marginTop: 10,
   },
-
   LayananIcon_Container: {
     backgroundColor: COLORS.blue_bg,
     width: responsiveScreenWidth(16.5),

@@ -46,16 +46,18 @@ export default function ExploreScreen({ route }) {
   };
 
   const isProductLiked = (productId) => {
-    return likedProducts.some((item) => item.id === productId);
+    return likedProducts.some((item) => item.serviceId === productId);
   };
 
   // Fungsi untuk menambahkan produk ke dalam liked
   const handleLikeToggle = (product) => {
     // Cek apakah produk sudah di-like
-    if (isProductLiked(product.id)) {
+    if (isProductLiked(product.serviceId)) {
       // Jika sudah, hapus dari liked
-      deleteDataLiked(product.id);
-      setLikedProducts((prev) => prev.filter((item) => item.id !== product.id));
+      deleteDataLiked(product.serviceId);
+      setLikedProducts((prev) =>
+        prev.filter((item) => item.serviceId !== product.id)
+      );
     } else {
       // Jika belum, tambahkan ke liked
       addDataLiked(product);
@@ -63,15 +65,15 @@ export default function ExploreScreen({ route }) {
     }
   };
   const filteredProducts = selectedKategori
-    ? DATA_Product.filter((product) => product.kategori_id === selectedKategori)
+    ? DATA_Product.filter((product) => product.categoryId === selectedKategori)
     : DATA_Product;
 
   useFocusEffect(
     React.useCallback(() => {
       // Menggunakan getData jika ada, atau default nilai kategori
       if (getData) {
-        setSelectedKategori(getData.id_kategori);
-        setSelectedKategoriName(getData.nama_kategori);
+        setSelectedKategori(getData.categoryId);
+        setSelectedKategoriName(getData.categoryName);
       } else {
         setSelectedKategori(1);
         setSelectedKategoriName("Hair Care");
@@ -98,20 +100,17 @@ export default function ExploreScreen({ route }) {
                   style={{
                     ...styles.KategoriStyle,
                     borderColor:
-                      selectedKategori === item.id_kategori
+                      selectedKategori === item.categoryId
                         ? COLORS.purple
                         : COLORS.grey,
                     backgroundColor:
-                      selectedKategori === item.id_kategori
+                      selectedKategori === item.categoryId
                         ? COLORS.blue_bg
                         : COLORS.white,
                   }}
                   onPress={() => {
-                    setSelectedKategori(
-                      selectedKategori === item.id_kategori
-                        ? null
-                        : item.id_kategori
-                    );
+                    setSelectedKategori(item.categoryId);
+                    setSelectedKategoriName(item.categoryName);
                   }}
                 >
                   <Text
@@ -121,7 +120,7 @@ export default function ExploreScreen({ route }) {
                         : FontStyle.Manrope_Medium_12
                     }
                   >
-                    {item.nama_kategori}
+                    {item.categoryName}
                   </Text>
                 </TouchableOpacity>
               ))}
@@ -138,7 +137,10 @@ export default function ExploreScreen({ route }) {
                 onPress={() => selectItem(item)}
               >
                 <View style={styles.kategoriBox_Left}>
-                  <Image source={item.image} style={styles.kategoriImage} />
+                  <Image
+                    source={item.assets[0].img}
+                    style={styles.kategoriImage}
+                  />
 
                   <TouchableOpacity
                     style={styles.likeContainer}
@@ -149,7 +151,7 @@ export default function ExploreScreen({ route }) {
                       style={{
                         ...styles.icon_Heart_style,
                         tintColor: COLORS.pink_solid,
-                        opacity: isProductLiked(item.id) ? 1 : 0.4,
+                        opacity: isProductLiked(item.serviceId) ? 1 : 0.4,
                       }}
                     />
                   </TouchableOpacity>
@@ -157,19 +159,21 @@ export default function ExploreScreen({ route }) {
                 <View style={styles.ketegoriBox_Right}>
                   <View style={styles.keterangan_Top}>
                     <Text style={FontStyle.NunitoSans_Regular_16_cyan}>
-                      {item.kategori}
+                      {item.categoryName}
                     </Text>
-                    <Text style={FontStyle.Manrope_Bold_16}>{item.nama}</Text>
+                    <Text style={FontStyle.Manrope_Bold_16}>
+                      {item.serviceName}
+                    </Text>
                     <Text
                       style={FontStyle.NunitoSans_Regular_12_grey}
                       numberOfLines={2}
                     >
-                      {item.keterangan}
+                      {item.description}
                     </Text>
                   </View>
                   <View style={styles.keterangan_Bot}>
                     <Text style={FontStyle.NunitoSans_Regular_12_grey}>
-                      {formatRupiah(item.harga)}
+                      {formatRupiah(item.price)}
                     </Text>
 
                     <TouchableOpacity
@@ -178,7 +182,9 @@ export default function ExploreScreen({ route }) {
                         navigation.navigate("BookingScreen", { data: item })
                       }
                     >
-                      <Text style={FontStyle.Manrope_Bold_10_Cyan}>Boking</Text>
+                      <Text style={FontStyle.Manrope_Bold_10_Cyan}>
+                        Booking
+                      </Text>
                     </TouchableOpacity>
                   </View>
                 </View>

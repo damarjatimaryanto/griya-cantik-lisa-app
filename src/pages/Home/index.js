@@ -82,7 +82,7 @@ export default function HomeScreen() {
                 <Layanan
                   key={index}
                   iconLayanan={item.icon}
-                  labelLayanan={item.nama_kategori}
+                  labelLayanan={item.categoryName}
                   onPress={() =>
                     navigation.navigate("ExploreScreen", { data: item })
                   }
@@ -99,7 +99,7 @@ export default function HomeScreen() {
                   <Layanan_Horizontal
                     key={index}
                     iconLayanan={item.icon}
-                    labelLayanan={item.nama_kategori}
+                    labelLayanan={item.categoryName}
                   />
                 ))}
               </ScrollView>
@@ -111,7 +111,10 @@ export default function HomeScreen() {
               {DATA_HairCare.map((item, index) => (
                 <TouchableOpacity key={index} style={styles.kategoriBox}>
                   <View style={styles.kategoriBox_Left}>
-                    <Image source={item.image} style={styles.kategoriImage} />
+                    <Image
+                      source={item.assets[0].img}
+                      style={styles.kategoriImage}
+                    />
 
                     <TouchableOpacity style={styles.likeContainer}>
                       <Image
@@ -126,24 +129,26 @@ export default function HomeScreen() {
                   <View style={styles.ketegoriBox_Right}>
                     <View style={styles.keterangan_Top}>
                       <Text style={FontStyle.NunitoSans_Regular_16_cyan}>
-                        {item.kategori}
+                        {item.categoryName}
                       </Text>
-                      <Text style={FontStyle.Manrope_Bold_16}>{item.nama}</Text>
+                      <Text style={FontStyle.Manrope_Bold_16}>
+                        {item.serviceName}
+                      </Text>
                       <Text
                         style={FontStyle.NunitoSans_Regular_12_grey}
                         numberOfLines={2}
                       >
-                        {item.keterangan}
+                        {item.description}
                       </Text>
                     </View>
                     <View style={styles.keterangan_Bot}>
                       <Text style={FontStyle.NunitoSans_Regular_12_grey}>
-                        {formatRupiah(item.harga)}
+                        {formatRupiah(item.price)}
                       </Text>
 
                       <TouchableOpacity style={styles.buttonBoking}>
                         <Text style={FontStyle.Manrope_Bold_10_Cyan}>
-                          Boking
+                          Booking
                         </Text>
                       </TouchableOpacity>
                     </View>
