@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, TextInput } from "react-native";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
@@ -97,15 +90,11 @@ const styles = StyleSheet.create({
   form_style: {
     flexDirection: "row",
     width: "100%",
-    // borderRadius: responsiveScreenHeight(50),
     marginVertical: 4.5,
-    // borderWidth: 1,
-    // borderColor: "grey",
     marginBottom: 16,
     backgroundColor: COLORS.grey_form,
   },
   inputStyle: {
-    // backgroundColor: 'pink',
     fontFamily: "Manrope-Medium",
     fontSize: getFontSize(14),
     color: COLORS.cyan,
@@ -132,7 +121,6 @@ const styles = StyleSheet.create({
     tintColor: COLORS.purple,
   },
   input_container: {
-    // backgroundColor: "yellow",
     width: "100%",
     height: "100%",
     justifyContent: "center",
@@ -142,8 +130,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: 'pink',
-    // opacity: 0.5,
   },
 });
 

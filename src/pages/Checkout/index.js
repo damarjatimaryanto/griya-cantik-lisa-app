@@ -31,6 +31,7 @@ export default function CheckoutScreen({ route }) {
 
   useFocusEffect(
     React.useCallback(() => {
+      console.log(getData);
       Print_r(getData);
     }, [getData])
   );
@@ -80,8 +81,8 @@ export default function CheckoutScreen({ route }) {
                     {getData.layanan.map((item, index) => (
                       <CheckoutContainerHorizontal
                         key={index}
-                        title={item.nama}
-                        label={formatRupiah(item.harga)}
+                        title={item.serviceName}
+                        label={formatRupiah(item.price)}
                       />
                     ))}
                   </>
@@ -91,7 +92,7 @@ export default function CheckoutScreen({ route }) {
 
                 <CheckoutContainerHorizontal
                   title={"Sub Total"}
-                  label={formatRupiah(getData.totalHarga)}
+                  label={formatRupiah(10000)}
                 />
 
                 <LineHorizontal

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   TextInput,
   Image,
@@ -18,7 +17,6 @@ import ICONS from "../../consts/icon.const";
 const CustomTextInput = ({
   input,
   setInput,
-  formTitle,
   placeHolder,
   keyboardType,
   nameRef,
@@ -26,14 +24,11 @@ const CustomTextInput = ({
   ContainerPaddingHorizontal,
   ContainerPaddingLeft,
   ContainerPaddingRight,
-  formPaddingHorizontal,
   isSecureForm,
   formHeight,
   maxLength,
   iconForm,
-  minLength,
   borderRadius,
-  isMultiline,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isSecureEntry, setIsSecureEntry] = useState(true);
@@ -135,15 +130,11 @@ const styles = StyleSheet.create({
   form_style: {
     flexDirection: "row",
     width: "100%",
-    // borderRadius: responsiveScreenHeight(50),
     marginVertical: 4.5,
-    // borderWidth: 1,
-    // borderColor: "grey",
     marginBottom: 16,
     backgroundColor: COLORS.grey_form,
   },
   inputStyle: {
-    // backgroundColor: 'pink',
     fontFamily: "Manrope-Medium",
     fontSize: getFontSize(14),
     color: COLORS.cyan,
@@ -159,7 +150,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "flex-end",
-    // backgroundColor: 'pink',
     paddingRight: "2%",
   },
   icon_style: {
@@ -168,7 +158,6 @@ const styles = StyleSheet.create({
     tintColor: COLORS.purple,
   },
   input_container: {
-    // backgroundColor: "yellow",
     width: "70%",
     height: "100%",
     justifyContent: "center",
@@ -178,8 +167,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: 'pink',
-    // opacity: 0.5,
   },
 });
 

@@ -1,26 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Modal,
-  TouchableOpacity,
-  Text,
-  Image,
-  View,
-  StyleSheet,
-  Animated,
-} from "react-native";
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize,
-  responsiveScreenHeight,
-  responsiveScreenWidth,
-  responsiveScreenFontSize,
-} from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors.const";
-import { getFontSize } from "../../helper/helper";
+import React from "react";
+import { TouchableOpacity, Text, Image, View, StyleSheet } from "react-native";
 import FontStyle from "../../style/font.style";
 import ICONS from "../../consts/icon.const";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "./style";
 
 const HeaderTop = ({ title, NavigateTo }) => {
   const navigation = useNavigation();
@@ -42,40 +25,3 @@ const HeaderTop = ({ title, NavigateTo }) => {
 };
 
 export default HeaderTop;
-
-const styles = StyleSheet.create({
-  //header custom container style
-  headerContainer: {
-    backgroundColor: "white",
-    width: responsiveScreenWidth(100),
-    height: responsiveScreenHeight(8),
-    flexDirection: "row",
-    alignItems: "center",
-
-    elevation: 4,
-
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  headerButtonLeft: {
-    // backgroundColor: 'pink',
-    width: responsiveScreenWidth(15),
-    // height: 40,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headerTitleContainer: {
-    // backgroundColor: 'yellow',
-    width: responsiveScreenWidth(70),
-    // height: 40,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  btnImage: {
-    width: responsiveScreenWidth(7),
-    height: responsiveScreenWidth(7),
-    tintColor: COLORS.cyan,
-  },
-});

@@ -2,34 +2,34 @@ import ICONS from "../consts/icon.const";
 
 export const DATA_Spesialis = [
   {
-    id_spesialis: 1,
-    nama_spesialis: "Nabila",
-    icon: ICONS.spesialis4,
+    specialistId: 1,
+    specialistName: "Nabila",
+    img: ICONS.spesialis4,
   },
   {
-    id_spesialis: 2,
-    nama_spesialis: "Marsanda",
-    icon: ICONS.spesialis2,
+    specialistId: 2,
+    specialistName: "Marsanda",
+    img: ICONS.spesialis2,
     isFocused: true,
   },
   {
-    id_spesialis: 3,
-    nama_spesialis: "Mamat",
-    icon: ICONS.spesialis3,
+    specialistId: 3,
+    specialistName: "Mamat",
+    img: ICONS.spesialis3,
   },
   {
-    id_spesialis: 4,
-    nama_spesialis: "Guteng",
-    icon: ICONS.spesialis1,
+    specialistId: 4,
+    specialistName: "Guteng",
+    img: ICONS.spesialis1,
   },
   {
-    id_spesialis: 5,
-    nama_spesialis: "Jono",
-    icon: ICONS.spesialis2,
+    specialistId: 5,
+    specialistName: "Jono",
+    img: ICONS.spesialis2,
   },
   {
-    id_spesialis: 6,
-    nama_spesialis: "Kamitem",
-    icon: ICONS.spesialis3,
+    specialistId: 6,
+    specialistName: "Kamitem",
+    img: ICONS.spesialis3,
   },
 ];

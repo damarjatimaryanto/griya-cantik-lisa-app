@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import {
   Modal,
   TouchableOpacity,
@@ -8,15 +8,9 @@ import {
   ScrollView,
   StatusBar,
 } from "react-native";
-import styles from "./ModalJenisPembayaran_Style.js";
+import styles from "./style";
 import ICONS from "../../../consts/icon.const.js";
 import FontStyle from "../../../style/font.style.js";
-import {
-  responsiveScreenHeight,
-  responsiveScreenWidth,
-} from "react-native-responsive-dimensions";
-import ButtonPurple from "../../Button/ButtonPurple.js";
-import { useFocusEffect } from "@react-navigation/native";
 import HeaderTop from "../../Header/Header.js";
 import { DATA_Payment } from "../../../services/DATA_Payment.js";
 
@@ -50,11 +44,11 @@ const ModalJenisPembayaran = ({ children, visible, onClose, setSelected }) => {
                   onPress={() => selectItem(item)}
                 >
                   <View style={styles.kategoriBox_Left}>
-                    <Image source={item.icon} style={styles.kategoriImage} />
+                    <Image source={item.img} style={styles.kategoriImage} />
                   </View>
                   <View style={styles.ketegoriBox_Center}>
                     <Text style={FontStyle.Manrope_Bold_14}>
-                      {item.nama_payment}
+                      {item.paymentMethodName}
                     </Text>
                   </View>
                   <View style={styles.ketegoriBox_Right}>

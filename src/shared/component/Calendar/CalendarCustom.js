@@ -1,22 +1,10 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
 import moment from "moment";
-moment.locale("id"); // Atur bahasa Indonesia
 import ICONS from "../../consts/icon.const";
-import { getFontSize } from "../../helper/helper";
-import COLORS from "../../consts/colors.const";
+import { styles } from "./style";
 import FontStyle from "../../style/font.style";
-import {
-  responsiveScreenHeight,
-  responsiveScreenWidth,
-} from "react-native-responsive-dimensions";
+moment.locale("id");
 
 const bulanIndo = [
   "Jan",
@@ -124,7 +112,6 @@ const CustomCalendar = ({ setTanggal }) => {
             <Text
               style={[
                 FontStyle.NunitoSans_Regular_12_grey,
-                // styles.dayName,
                 item.isDisabled && styles.disabledText,
                 item.date === focusedDate && styles.focusedText,
               ]}
@@ -134,7 +121,6 @@ const CustomCalendar = ({ setTanggal }) => {
             <Text
               style={[
                 FontStyle.Manrope_Bold_24,
-                // styles.dayNumber,
                 item.isDisabled && styles.disabledText,
                 item.date === focusedDate && styles.focusedText,
               ]}
@@ -147,67 +133,5 @@ const CustomCalendar = ({ setTanggal }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    // backgroundColor: 'pink',
-    height: responsiveScreenHeight(18),
-  },
-  navigation: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  navButton: {
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    // backgroundColor: '#ddd',
-    borderRadius: 5,
-  },
-  navButtonICON: {
-    width: getFontSize(16),
-    height: getFontSize(16),
-    tintColor: COLORS.cyan,
-  },
-  navText: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  monthText: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  dateContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    marginHorizontal: 10,
-    backgroundColor: COLORS.grey_form,
-    height: responsiveScreenHeight(10),
-    width: responsiveScreenWidth(15),
-    borderRadius: responsiveScreenWidth(100),
-  },
-  dayName: {
-    fontSize: 14,
-    color: "#888",
-  },
-  dayNumber: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  disabledDate: {
-    opacity: 0.9, // Gaya untuk tanggal yang di-disable
-  },
-  disabledText: {
-    color: "#ccc", // Warna teks untuk tanggal yang di-disable
-  },
-  focusedDate: {
-    backgroundColor: COLORS.purple, // Latar belakang untuk tanggal yang di-fokuskan
-  },
-  focusedText: {
-    color: "white", // Warna teks untuk tanggal yang di-fokuskan
-  },
-});
 
 export default CustomCalendar;

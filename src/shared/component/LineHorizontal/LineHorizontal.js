@@ -1,24 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Modal,
-  TouchableOpacity,
-  Text,
-  Image,
-  View,
-  StyleSheet,
-  Animated,
-} from "react-native";
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize,
-  responsiveScreenHeight,
-  responsiveScreenWidth,
-  responsiveScreenFontSize,
-} from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors.const";
-import { getFontSize } from "../../helper/helper";
-import FontStyle from "../../style/font.style";
+import React from "react";
+import { View } from "react-native";
+import { responsiveScreenHeight } from "react-native-responsive-dimensions";
+import { styles } from "./style";
 
 const LineHorizontal = ({
   isSolid,
@@ -60,35 +43,3 @@ const LineHorizontal = ({
 };
 
 export default LineHorizontal;
-
-const styles = StyleSheet.create({
-  paddingContainer: {
-    backgroundColor: COLORS.blue_bg,
-    width: responsiveScreenWidth(94),
-    // height: responsiveScreenHeight(5),
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  paddingLeft: {
-    backgroundColor: "white",
-    width: responsiveScreenWidth(5),
-    height: "100%",
-    borderTopRightRadius: responsiveScreenWidth(50),
-    borderBottomRightRadius: responsiveScreenWidth(50),
-  },
-  paddingCenter: {
-    // backgroundColor: 'grey',
-    width: responsiveScreenWidth(80),
-    height: 1,
-    borderWidth: 1,
-    borderColor: COLORS.grey2, // warna garis
-  },
-  paddingRight: {
-    backgroundColor: "white",
-    width: responsiveScreenWidth(5),
-    height: "100%",
-    borderTopLeftRadius: responsiveScreenWidth(50),
-    borderBottomLeftRadius: responsiveScreenWidth(50),
-  },
-});

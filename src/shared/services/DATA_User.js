@@ -2,15 +2,19 @@ import ICONS from "../consts/icon.const";
 
 export const DATA_User = [
   {
-    id_user: 1,
-    nama_user: "Damarjati Maryanto",
+    customerId: 1,
+    firstName: "Damarjati",
+    LastName: "Maryanto",
     username: "damar",
     password: "123",
+    img: "img.png",
   },
   {
-    id_user: 2,
-    nama_user: "Afan Alfi Andi",
+    customerId: 2,
+    firstName: "Afan",
+    LastName: "Alfi Andi",
     username: "afan",
     password: "123",
+    img: "img.png",
   },
 ];

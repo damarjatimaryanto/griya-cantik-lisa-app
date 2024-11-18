@@ -1,10 +1,8 @@
 import { StyleSheet } from "react-native";
-import { getFontSize } from "../../shared/helper/helper";
 import COLORS from "../../shared/consts/colors.const";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
-  responsiveWidth,
 } from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({

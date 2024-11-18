@@ -1,22 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Modal,
-  TouchableOpacity,
-  Text,
-  Image,
-  View,
-  StyleSheet,
-  Animated,
-} from "react-native";
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize,
-  responsiveScreenHeight,
-  responsiveScreenWidth,
-  responsiveScreenFontSize,
-} from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors.const";
+import React from "react";
+import { Text, StyleSheet, View } from "react-native";
+import { responsiveScreenWidth } from "react-native-responsive-dimensions";
 import { getFontSize } from "../../helper/helper";
 import FontStyle from "../../style/font.style";
 
@@ -42,7 +26,6 @@ export default CheckoutContainerVertical;
 
 const styles = StyleSheet.create({
   rowSolid: {
-    // backgroundColor: 'red',
     width: responsiveScreenWidth(40),
     paddingVertical: responsiveScreenWidth(3),
     justifyContent: "center",

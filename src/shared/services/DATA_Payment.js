@@ -2,19 +2,19 @@ import ICONS from "../consts/icon.const";
 
 export const DATA_Payment = [
   {
-    id_payment: 1,
-    nama_payment: "Mandiri",
-    icon: ICONS.pay_mandiri,
+    paymentMethodId: 1,
+    paymentMethodName: "Mandiri",
+    img: ICONS.pay_mandiri,
     isFocused: true,
   },
   {
-    id_payment: 2,
-    nama_payment: "BNI",
-    icon: ICONS.pay_bni,
+    paymentMethodId: 2,
+    paymentMethodName: "BNI",
+    img: ICONS.pay_bni,
   },
   {
-    id_payment: 3,
-    nama_payment: "BRI Virtual Account",
-    icon: ICONS.pay_briva,
+    paymentMethodId: 3,
+    paymentMethodName: "BRI Virtual Account",
+    img: ICONS.pay_briva,
   },
 ];

@@ -1,23 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { Text, View, StyleSheet } from "react-native";
 import {
-  Modal,
-  TouchableOpacity,
-  Text,
-  Image,
-  View,
-  StyleSheet,
-  Animated,
-} from "react-native";
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize,
   responsiveScreenHeight,
   responsiveScreenWidth,
-  responsiveScreenFontSize,
 } from "react-native-responsive-dimensions";
-import COLORS from "../../consts/colors.const";
-import { getFontSize } from "../../helper/helper";
 import FontStyle from "../../style/font.style";
 
 const CheckoutContainerHorizontal = ({ label, title, paddingLeft }) => {
@@ -33,9 +19,7 @@ export default CheckoutContainerHorizontal;
 
 const styles = StyleSheet.create({
   row2: {
-    // backgroundColor: 'pink',
     width: responsiveScreenWidth(80),
-    // height: responsiveScreenHeight(5),
     paddingVertical: responsiveScreenHeight(1),
     flexDirection: "row",
     justifyContent: "space-between",

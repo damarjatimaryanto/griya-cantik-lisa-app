@@ -7,7 +7,7 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import styles from "./ModalDetail_Style.js";
+import styles from "./style.js";
 import ICONS from "../../../consts/icon.const.js";
 import FontStyle from "../../../style/font.style";
 import {
@@ -28,11 +28,7 @@ const ModalDetailLayanan = ({ children, visible, onClose, data }) => {
     // Menggunakan Math.round untuk menghitung indeks yang lebih akurat
     const index = Math.round(contentOffsetX / itemWidth);
 
-    if (
-      index !== activeIndex &&
-      index >= 0 &&
-      index < data.imageDetail.length
-    ) {
+    if (index !== activeIndex && index >= 0 && index < data.assets.length) {
       setActiveIndex(index);
     }
   };
@@ -59,7 +55,7 @@ const ModalDetailLayanan = ({ children, visible, onClose, data }) => {
       <View style={styles.modalContainer}>
         <View style={styles.modal_style}>
           <View style={styles.modal_boxContainer_Top}>
-            {data.imageDetail && (
+            {data.assets && (
               <>
                 <ScrollView
                   ref={scrollViewRef}
@@ -69,17 +65,17 @@ const ModalDetailLayanan = ({ children, visible, onClose, data }) => {
                   showsHorizontalScrollIndicator={false}
                   scrollEventThrottle={16} // Lebih cepat untuk akurasi
                 >
-                  {data.imageDetail.map((item, index) => (
-                    <View key={item.id}>
-                      <Image source={data.image} style={styles.imageDetail} />
+                  {data.assets.map((item, index) => (
+                    <View key={index}>
+                      <Image source={item.img} style={styles.imageDetail} />
                     </View>
                   ))}
                 </ScrollView>
 
                 <View style={styles.indicatorContainer}>
-                  {data.imageDetail.map((item, index) => (
+                  {data.assets.map((item, index) => (
                     <TouchableOpacity
-                      key={item.id}
+                      key={index}
                       onPress={() => handleIndicatorPress(index)}
                     >
                       <View
@@ -99,13 +95,13 @@ const ModalDetailLayanan = ({ children, visible, onClose, data }) => {
 
           <View style={styles.modal_boxContainer_Center}>
             <View style={styles.detailTop}>
-              <Text style={FontStyle.Manrope_Bold_24}>{data.nama}</Text>
+              <Text style={FontStyle.Manrope_Bold_24}>{data.serviceName}</Text>
               <View style={styles.durasiContainer}>
                 <Image source={ICONS.icon_jam} style={styles.iconjam_Style} />
                 <Text style={FontStyle.NunitoSans_Regular_16}>30 Menit</Text>
               </View>
 
-              <Text style={FontStyle.Manrope_Bold_24_Cyan}>{data.harga}</Text>
+              <Text style={FontStyle.Manrope_Bold_24_Cyan}>{data.price}</Text>
             </View>
             <View style={styles.HR_Style} />
 
@@ -120,7 +116,7 @@ const ModalDetailLayanan = ({ children, visible, onClose, data }) => {
             <View style={styles.treatmentContainer}>
               <ScrollView>
                 <Text style={FontStyle.NunitoSans_Regular_12_grey}>
-                  {data.keterangan}
+                  {data.description}
                 </Text>
               </ScrollView>
             </View>

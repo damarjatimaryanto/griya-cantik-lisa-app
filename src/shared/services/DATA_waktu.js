@@ -1,38 +1,33 @@
-
-
 export const DATA_waktu = [
-    {
-        id_waktu: 1,
-        waktu: "10:00",
-    },
-    {
-        id_waktu: 2,
-        waktu: "11:00",
-        isDisable: true
-
-    },
-    {
-        id_waktu: 3,
-        waktu: "13:00",
-
-
-    },
-    {
-        id_waktu: 4,
-        waktu: "14:00",
-
-    },
-    {
-        id_waktu: 5,
-        waktu: "15:00",
-
-    },
-    {
-        id_waktu: 6,
-        waktu: "16:00",
-
-    },
-
-
-
+  {
+    slotId: 1,
+    time: "10:00",
+    slot: 5,
+  },
+  {
+    slotId: 2,
+    time: "11:00",
+    isDisable: true,
+    slot: 5,
+  },
+  {
+    slotId: 3,
+    time: "13:00",
+    slot: 5,
+  },
+  {
+    slotId: 4,
+    time: "14:00",
+    slot: 5,
+  },
+  {
+    slotId: 5,
+    time: "15:00",
+    slot: 5,
+  },
+  {
+    slotId: 6,
+    time: "16:00",
+    slot: 5,
+  },
 ];

@@ -14,7 +14,6 @@ import COLORS from "../../shared/consts/colors.const";
 import React, { useState, createRef } from "react";
 import { DATA_Spesialis } from "../../shared/services/DATA_Spesialis";
 import { responsiveScreenWidth } from "react-native-responsive-dimensions";
-import { DATA_waktu } from "../../shared/services/DATA_waktu";
 import CustomCalendar from "../../shared/component/Calendar/CalendarCustom";
 import CustomTextArea from "../../shared/component/Textinput/CustomTextArea";
 import ButtonPurple from "../../shared/component/Button/ButtonPurple";
@@ -33,7 +32,7 @@ import {
   removeItemFromSelectedLayanan,
 } from "./booking.config";
 import { addDataRiwayat } from "../../shared/services/Asycnstorage";
-
+import { DATA_waktu } from "../../shared/services/DATA_waktu";
 export default function BookingScreen({ route }) {
   const getData = route.params.data;
   const navigation = useNavigation();
@@ -60,7 +59,7 @@ export default function BookingScreen({ route }) {
     toggleModal();
   };
   const sendToCheckout = () => {
-    data = {
+    const data = {
       layanan: SelectedLayanan,
       spesialis: selectedSpesialisName,
       tanggal: TanggalBooking,
@@ -69,11 +68,11 @@ export default function BookingScreen({ route }) {
       catatan: catatan,
       totalHarga: calculateTotalPrice(SelectedLayanan),
     };
+    addDataRiwayat(data);
 
     navigation.navigate("CheckoutScreen", {
       data: data,
     });
-    addDataRiwayat(data);
     // Print_r(data);
   };
 
@@ -120,24 +119,24 @@ export default function BookingScreen({ route }) {
                       >
                         <View style={styles.kategoriBox_Left}>
                           <Image
-                            source={item.image}
+                            source={item.assets[0].img}
                             style={styles.kategoriImage}
                           />
                         </View>
                         <View style={styles.ketegoriBox_Center}>
                           <View style={styles.keterangan_Top}>
                             <Text style={FontStyle.Manrope_Bold_16}>
-                              {item.nama}
+                              {item.serviceName}
                             </Text>
                             <View style={styles.keterangan_Bot}>
                               <Text style={FontStyle.Manrope_Bold_16_Cyan}>
-                                {formatRupiah(item.harga)}{" "}
+                                {formatRupiah(item.price)}{" "}
                               </Text>
                               <View style={styles.dot} />
                               <Text
                                 style={FontStyle.NunitoSans_Regular_12_grey}
                               >
-                                {item.kategori_name}
+                                {item.categoryName}
                               </Text>
                             </View>
                           </View>
@@ -147,7 +146,7 @@ export default function BookingScreen({ route }) {
                             style={styles.plusminus_style}
                             onPress={() =>
                               removeItemFromSelectedLayanan(
-                                item.id,
+                                item.serviceId,
                                 setSelectedLayanan
                               )
                             }
@@ -177,32 +176,32 @@ export default function BookingScreen({ route }) {
                       style={{
                         ...styles.spesialisPhotos_Container,
                         borderColor:
-                          selectedSpesialisID === item.id_spesialis
+                          selectedSpesialisID === item.specialistId
                             ? COLORS.purple
                             : COLORS.grey,
                         borderWidth:
-                          selectedSpesialisID === item.id_spesialis
+                          selectedSpesialisID === item.specialistId
                             ? responsiveScreenWidth(1)
                             : 0,
                       }}
                       onPress={() => {
                         setSelectedSpesialisID(
-                          selectedSpesialisID === item.id_spesialis
+                          selectedSpesialisID === item.specialistId
                             ? null
-                            : item.id_spesialis
+                            : item.specialistId
                         );
                         setSelectedSpesialisName(
-                          setSelectedSpesialisName === item.nama_spesialis
+                          setSelectedSpesialisName === item.specialistName
                             ? null
-                            : item.nama_spesialis
+                            : item.specialistName
                         );
                       }}
                     >
                       <Image
-                        source={item.icon}
+                        source={item.img}
                         style={styles.spesialisPhotos_Style}
                       />
-                      {selectedSpesialisID === item.id_spesialis && (
+                      {selectedSpesialisID === item.specialistId && (
                         <View style={styles.spesialisFocus}>
                           <Image
                             style={styles.iconCheck}
@@ -212,7 +211,7 @@ export default function BookingScreen({ route }) {
                       )}
                     </TouchableOpacity>
                     <Text style={FontStyle.Manrope_Medium_14_}>
-                      {item.nama_spesialis}
+                      {item.specialistName}
                     </Text>
                   </View>
                 ))}
@@ -237,31 +236,29 @@ export default function BookingScreen({ route }) {
                     style={{
                       ...styles.KategoriStyle,
                       borderColor:
-                        item.waktu == selectedTime
-                          ? COLORS.purple
-                          : COLORS.grey,
+                        item.time == selectedTime ? COLORS.purple : COLORS.grey,
                       backgroundColor:
-                        item.waktu == selectedTime
+                        item.time == selectedTime
                           ? COLORS.blue_bg
                           : COLORS.white,
                       opacity: item.isDisable ? 0.3 : 1,
                     }}
                     onPress={() => {
                       setSelectedTime(
-                        selectedTime === item.waktu ? null : item.waktu
+                        selectedTime === item.time ? null : item.time
                       );
-                      // setSelectedSpesialisName(setSelectedSpesialisName === item.nama_spesialis ? null : item.nama_spesialis);
+                      // setSelectedSpesialisName(setSelectedSpesialisName === item.specialistName ? null : item.specialistName);
                     }}
                     disabled={item.isDisable}
                   >
                     <Text
                       style={
-                        item.waktu == selectedTime
+                        item.time == selectedTime
                           ? FontStyle.Manrope_Medium_12_Cyan
                           : FontStyle.Manrope_Medium_12
                       }
                     >
-                      {item.waktu}
+                      {item.time}
                     </Text>
                   </TouchableOpacity>
                 ))}
@@ -313,7 +310,8 @@ export default function BookingScreen({ route }) {
             <Text
               style={{ ...FontStyle.Manrope_Bold_20, color: COLORS.purple }}
             >
-              Rp. {calculateTotalPriceToString(SelectedLayanan)}
+              {/* Rp. {calculateTotalPriceToString(10000)} */}
+              Rp. 10.000
             </Text>
           </View>
           <View style={styles.FloatingBottomRight}>
