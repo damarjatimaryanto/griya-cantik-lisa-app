@@ -20,6 +20,7 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { formatRupiah, Print_r } from "../../shared/helper/helper";
 import React, { useState } from "react";
 import { getUserSession } from "../../shared/services/Asycnstorage";
+import { testFetch } from "../../shared/services/test.service";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -27,6 +28,9 @@ export default function HomeScreen() {
 
   useFocusEffect(
     React.useCallback(() => {
+      testFetch().then((res) => {
+        console.log(res);
+      });
       getUserSession(setUserData);
     }, [])
   );

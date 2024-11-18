@@ -1,7 +1,7 @@
-import { API_BASE_URL } from "../consts/base-url";
+import { API_BASE_URL } from "../consts/base-url.const";
 const createUrl = (endpoint) => `${API_BASE_URL}${endpoint}`;
 
-export const get = async (endpoint, config = {}) => {
+export const get = async (endpoint) => {
   try {
     const response = await fetch(createUrl(endpoint), {
       method: "GET",
